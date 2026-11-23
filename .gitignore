@@ -1,0 +1,18 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Secrets. .env.example is committed; .env.local never is.
+.env
+.env.local
+*.log
+.DS_Store
+
+# The corpus is 25 public government PDFs, ~6 MB, and every one of them is
+# re-fetchable with `npm run fetch-corpus`. Committing binaries that a script
+# can reproduce bloats the repo for no benefit — docs/corpus.json is the
+# source of truth, and it IS committed.
+corpus/*.pdf
+!corpus/.gitkeep
