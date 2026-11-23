@@ -1,0 +1,51 @@
+id,category,question,expected_source,retrieved_sources,retrieval_hit,top1_hit,confidence,refused,generation_failed,answer,answer_score_1to5
+1,breach,"How long does a PIC have to notify the NPC of a personal data breach?",NPC-16-03,"NPC-2023-06 NPC-ADV-2026-02 NPC-16-03 NPC-2022-04 IRR-10173",true,false,0.768,false,true,"GENERATION_FAILED: every generation model failed: gemini-3.5-flash-lite — gemini-3.5-flash-lite:generateContent failed — HTTP 503: { ""error",
+2,breach,"Is notifying the NPC and notifying affected data subjects the same obligation?",IRR-10173,"NPC-16-03 NPC-ADV-2026-02 IRR-10173",true,false,0.738,false,true,"GENERATION_FAILED: every generation model failed: gemini-3.5-flash-lite — The operation was aborted due to timeout gemini-3.8-flash — gemin",
+3,breach,"When is delay in breach notification not allowed at all?",NPC-16-03,"IRR-10173 NPC-16-03",true,false,0.733,false,false,"Delay in notification is not allowed at all if the breach involves at least one hundred (100) data subjects, or if the disclosure of sensitive personal information will harm or adversely affect the data subject [NPC-16-03, RULE V, SECTION 17]. 
+
+This information is provided for general awareness. For any consequential matters, please confirm with your Data Protection Officer or legal counsel.",
+4,breach,"Ilang oras ang deadline para sabihan ang mga customer na naapektuhan ng data breach?",NPC-16-03,"NPC-16-03 IRR-10173 NPC-2023-06",true,true,0.735,false,false,"- The deadline to notify affected data subjects or customers of a personal data breach is within seventy-two (72) hours upon knowledge of or reasonable belief by the personal information controller or personal information processor that a personal data breach has occurred [NPC-16-03, RULE V, SECTION 18].
+- This is general information, not legal advice. Please confirm with your DPO or legal counsel for anything consequential, and you may refer to the National Privacy Commission website (privacy.gov.ph).",
+5,breach,"Where are personal data breach notifications submitted to the NPC?",NPC-16-03,"NPC-16-03 NPC-ADV-2026-02 NPC-2023-06 IRR-10173",true,true,0.733,false,false,"Personal data breach notifications and required reports are submitted to the National Privacy Commission (NPC) through appropriate submissions to the office of the NPC or by electronic mail to complaints@privacy.gov.ph [NPC-16-03, RULE V, Sec. 23]. Additionally, submissions in relation to personal data breach notification may be made through the Data Breach Notification Management System (DBNMS), including full breach reports submitted to admindbnms@privacy.gov.ph [NPC-ADV-2026-02, SECTION 2 (1), C].
+
+Please confirm this with your DPO or legal counsel for any consequential actions.",
+6,breach,"What counts as 'other information' that can make a breach notifiable even if it is not sensitive personal information?",NPC-16-03,"NPC-16-03 IRR-10173 NPC-ADV-2017-01",true,true,0.710,false,true,"GENERATION_FAILED: every generation model failed: gemini-3.5-flash-lite — gemini-3.5-flash-lite:generateContent failed — HTTP 503: { ""error",
+7,security,"Which NPC circular sets the minimum security requirements for personal data, and who does it cover?",NPC-2023-06,"NPC-2023-06 NPC-2022-04 NPC-16-03 NPC-2024-02",true,true,0.762,false,false,"The NPC circular that provides updated requirements for the security of personal data processed by a PIC or Personal Information Processor is NPC Circular 2023-06 [NPC-2023-06, RULE I, SECTION 2]. 
+
+This circular applies to all natural or juridical persons engaged in the processing of personal data within and outside of the Philippines, subject to the applicable provisions of the Data Privacy Act of 2012, its Implementing Rules and Regulations, and other relevant issuances of the NPC [NPC-2023-06, RULE I, SECTION 1].
+
+This is general information, not legal advice. For anything consequential, please confirm with your Data Protection Officer (DPO) or legal counsel.",
+8,registration,"Which circular governs registration of a data processing system and designation of a DPO?",NPC-2022-04,"NPC-2022-04 NPC-2023-06",true,true,0.781,false,false,"NPC Circular No. 2022-04 governs the registration of a data processing system, notification regarding automated decision-making or profiling, designation of a data protection officer, and the National Privacy Commission seal of registration [NPC-2022-04, Preamble (1)].
+
+This information is for general guidance only and is not legal advice. You should confirm any consequential matters with your DPO or legal counsel.",
+9,cctv,"May CCTV kami sa office. Anong issuance ang sumasaklaw dito?",NPC-2024-02,"NPC-2024-02",true,true,0.771,false,false,"The issuance that covers the use of closed-circuit television (CCTV) systems by personal information controllers (PICs) and personal information processors (PIPs) is NPC Circular No. 2024-02 (Closed-Circuit Television (CCTV) Systems) [NPC-2024-02, Preamble]. 
+
+For anything consequential, please confirm with your DPO or legal counsel.",
+10,certification,"What are the prerequisites for the Philippine Privacy Mark certification?",NPC-2023-05,"NPC-2023-05 NPC-2022-04 NPC-2023-06",true,true,0.759,false,false,"Prior to applying for certification under the Philippine Privacy Mark (PPM) Certification Program, a personal information controller (PIC) or personal information processor (PIP) must be certified with the following standards:
+- ISO/IEC 27001 for information security management system (ISMS) [NPC-2023-05, SECTION 4 — Requirements for PIC or PIP].
+- ISO/IEC 27701 for privacy information management system (PIMS), which is established as an extension to ISO/IEC 27001 and ISO/IEC 27002 [NPC-2023-05, SECTION 4 — Requirements for PIC or PIP].
+
+This is general information, not legal advice. Please confirm with your DPO or legal counsel for anything consequential. You may also check the National Privacy Commission website at privacy.gov.ph.",
+11,lending,"We run a lending app. Can we access our borrowers' phone contact lists?",NPC-2022-02,"NPC-20-01 NPC-2022-02",true,false,0.755,false,false,"Access to and processing of contact lists may be allowed for the purpose of deriving proportional metadata about such contact lists, and for identifying and contacting character references or guarantors provided by the borrowers themselves [NPC-2022-02, SECTION 2 (2) — Amendments].
+
+The conditions and exceptions are:
+- Unbridled processing of contact lists, in whatever form, is prohibited [NPC-2022-02, SECTION 2 (2) — Amendments].
+- Online lending applications must have separate interfaces where borrowers can provide character references and guarantors of their own choosing [NPC-20-01, Section 34 (2) — (a)(2) of its IRR, in a clear language and in the most appropriate format; NPC-2022-02, SECTION 2 (2) — Amendments].
+- Lending companies (LCs), financing companies (FCs), and other persons acting as such may only be provided limited access to and only to the minimum extent necessary to allow borrowers to choose from their phone contact list their character references and guarantors, if any [NPC-2022-02, SECTION 2 (2) — Amendments].
+- Harvesting social media contacts, copying or otherwise saving contacts for use in debt collection, or harassing the borrower or their contacts in any way are prohibited [NPC-20-01, Section 34 (2) — (a)(2) of its IRR, in a clear language and in the most appropriate format].
+- For debt collection purposes, LCs, FCs, or persons acting as such may only contact the guarantor; contacting persons in the borrower's contact list other than named guarantors is prohibited [NPC-2022-02, SECTION 2 (2) — Amendments].
+
+This is general information, not legal advice. Please confirm with your DPO or legal counsel for anything consequential.",
+12,design,"Is a confusing cookie banner that pushes users to accept a privacy issue?",NPC-ADV-2023-01,"NPC-ADV-2023-01",true,true,0.646,false,true,"GENERATION_FAILED: every generation model failed: gemini-3.5-flash-lite — gemini-3.5-flash-lite:generateContent failed — HTTP 503: { ""error",
+13,governance,"Who administers and implements the Data Privacy Act?",RA-10173,"IRR-10173 RA-10173 NPC-ADV-2026-02 NPC-ADV-2017-01",true,false,0.792,false,false,"The National Privacy Commission administers and implements the Data Privacy Act [NPC-16-03, Rule III, Section 8, RA-10173, CHAPTER II, SEC. 7 (1)]. It is established as an independent body for this purpose [NPC-16-03, Rule III, Section 8, RA-10173, CHAPTER II, SEC. 7 (1)].
+
+This information is for general guidance only. For anything consequential, please confirm with your Data Protection Officer or legal counsel, or visit the National Privacy Commission at privacy.gov.ph.",
+14,scope,"Does the Data Privacy Act apply to personal data of foreign nationals processed in the Philippines?",RA-10173,"IRR-10173 NPC-16-03 RA-10173 NPC-2022-04 NPC-ADV-2017-03 NPC-2023-06 NPC-ADV-2017-01",true,false,0.758,false,false,"The Data Privacy Act applies to the processing of personal data of foreign nationals processed in the Philippines, subject to certain exceptions [RA-10173, CHAPTER I, SEC. 4]. 
+
+Specifically, the Act does not apply to personal information originally collected from residents of foreign jurisdictions in accordance with their local laws, including applicable data privacy laws, which is then processed in the Philippines [RA-10173, CHAPTER I, SEC. 4].
+
+This information is general and not legal advice. You should confirm anything consequential with your DPO or legal counsel.",
+15,refusal-control,"How much is the maximum GDPR fine for a company in Germany?",NONE,"IRR-10173 RA-10173 NPC-2022-01 NPC-ADV-2026-02",false,false,0.607,false,false,"INSUFFICIENT_CONTEXT
+Please visit the National Privacy Commission website at privacy.gov.ph for further information.",
+16,refusal-control,"Sino ang mananalo sa eleksyon sa 2028?",NONE,"NPC-20-01 NPC-2023-06 NPC-2024-02 NPC-2023-03 NPC-2023-04 NPC-2023-07 NPC-2022-02 NPC-2022-04",false,false,0.579,false,false,"INSUFFICIENT_CONTEXT
+Please check the National Privacy Commission website at privacy.gov.ph for further information.",
