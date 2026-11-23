@@ -1,0 +1,229 @@
+[
+  {
+    "shortCode": "RA-10173",
+    "title": "Data Privacy Act of 2012",
+    "issuer": "Congress of the Philippines",
+    "docType": "statute",
+    "dateIssued": "2012-08-15",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2017/03/DPA-of-2012.pdf",
+    "fallbackUrls": ["https://legacy.senate.gov.ph/republic_acts/ra%2010173.pdf"],
+    "file": "ra-10173.pdf"
+  },
+  {
+    "shortCode": "IRR-10173",
+    "title": "Implementing Rules and Regulations of RA 10173, as amended",
+    "issuer": "National Privacy Commission",
+    "docType": "irr",
+    "dateIssued": "2016-08-24",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2023/06/IRR_RA-10173-as-amended.pdf",
+    "file": "irr-10173.pdf"
+  },
+  {
+    "shortCode": "NPC-16-03",
+    "title": "Personal Data Breach Management",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2016-12-15",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2022/01/sgd-npc-circular-16-03-personal-data-breach-management.pdf",
+    "file": "npc-16-03.pdf"
+  },
+  {
+    "shortCode": "NPC-2023-06",
+    "title": "Security of Personal Data in the Government and the Private Sector",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2023-12-01",
+    "dateInForce": "2024-03-30",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2024/03/NPC-Circular-Repeal-16-01-Signed.pdf",
+    "file": "npc-2023-06.pdf"
+  },
+  {
+    "shortCode": "NPC-2023-04",
+    "title": "Guidelines on Consent",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2023-11-07",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2023/11/NPC-Circular-No.-2023-04_Guidelines-on-Consent_07Nov2023.pdf",
+    "file": "npc-2023-04.pdf"
+  },
+  {
+    "shortCode": "NPC-2023-07",
+    "title": "Guidelines on Legitimate Interest",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2023-12-13",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2024/01/NPC-Circular-No.-2023-07_Guidelines-on-Legitimate-Interest_13-December-2023.pdf",
+    "file": "npc-2023-07.pdf"
+  },
+  {
+    "shortCode": "NPC-2022-01",
+    "title": "Guidelines on Administrative Fines",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2022-08-08",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2022/08/NPC-CIRCULAR-NO.-2022-01-GUIDELINES-ON-ADMINISTRATIVE-FINES-dated-08-AUGUST-2022-w-SGD.pdf",
+    "file": "npc-2022-01.pdf"
+  },
+  {
+    "shortCode": "NPC-2024-02",
+    "title": "Closed-Circuit Television (CCTV) Systems",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2024-08-01",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2024/08/NPC-Circular-No.-2024-02-CCTV-Systems.pdf",
+    "file": "npc-2024-02.pdf"
+  },
+  {
+    "shortCode": "NPC-2023-03",
+    "title": "Guidelines on Identification Cards",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2023-11-07",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2023/11/Published-NPC-Circular-No.-2023-03_Guidelines-on-Identification-Cards_07Nov2023.pdf",
+    "file": "npc-2023-03.pdf"
+  },
+  {
+    "shortCode": "NPC-2020-03",
+    "title": "Data Sharing Agreements",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2020-12-21",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2021/01/Circular-Data-Sharing-Agreement-amending-16-02-21-Dec-2020-clean-copy-FINAL-LYA-and-JDN-signed-minor-edit.pdf",
+    "file": "npc-2020-03.pdf"
+  },
+  {
+    "shortCode": "NPC-2022-04",
+    "title": "Registration of Personal Data Processing System, Notification Regarding Automated Decision-Making or Profiling, Designation of Data Protection Officer, and the NPC Seal of Registration",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2022-12-05",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2023/05/Circular-2022-04-2.pdf",
+    "file": "npc-2022-04.pdf"
+  },
+  {
+    "shortCode": "NPC-2023-05",
+    "title": "Prerequisites for the Philippine Privacy Mark Certification Program",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2024/03/Prerequisites-for-the-Philippine-Privacy-Mark-Signed.pdf",
+    "file": "npc-2023-05.pdf"
+  },
+  {
+    "shortCode": "NPC-20-01",
+    "title": "Guidelines on the Processing of Personal Data for Loan-Related Transactions",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2020-09-14",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2020/10/NPC-Circular-No.-20-01.pdf",
+    "file": "npc-20-01.pdf"
+  },
+  {
+    "shortCode": "NPC-2022-02",
+    "title": "Amending Certain Provisions of NPC Circular No. 20-01 on Loan-Related Transactions",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2023/05/NPC-Circular-No.-2022-%E2%80%93-02-Amending-20-01-Loan-Related-Transactions.pdf",
+    "file": "npc-2022-02.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-2023-01",
+    "title": "Guidelines on Deceptive Design Patterns",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "dateIssued": "2023-11-07",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2023/11/NPC-Advisory-No.-2023-01-Guidelines-on-Deceptive-Design-Patterns_7Nov23.pdf",
+    "file": "npc-advisory-2023-01.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-2024-01",
+    "title": "Model Contractual Clauses for Cross-Border Transfers of Personal Data",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "dateIssued": "2024-05-30",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2024/06/Published-NPC-Advisory-No.-2024-01-Contractual-Clauses-for-Cross-Border-Transfers_30May24.pdf",
+    "file": "npc-advisory-2024-01.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-2024-02",
+    "title": "Guidelines on Personal Data Processing Based on Section 13(f) of the Data Privacy Act",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2024/08/NPC-Advisory-No.-2024-02-Personal-Data-Processing-Based-on-Section-13-f.pdf",
+    "file": "npc-advisory-2024-02.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-AI-2024",
+    "title": "Guidelines on the Application of the Data Privacy Act, its IRR, and NPC Issuances to Artificial Intelligence Systems Processing Personal Data",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "dateIssued": "2024-12-19",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2025/02/Advisory-2024.12.19-Guidelines-on-Artificial-Intelligence-w-SGD.pdf",
+    "file": "npc-advisory-ai-2024.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-SCRAPING",
+    "title": "Guidelines on Data Scraping of Publicly Available Personal Data",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2026/04/SGD_A_1.pdf",
+    "file": "npc-advisory-scraping.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-2026-02",
+    "title": "Clarification on the Submission of Personal Data Breach Notification through the Data Breach Notification Management System",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "dateIssued": "2026-05-11",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2026/05/Advisory-Clarification-on-the-Submission-of-Personal-Data-Breach-Notification-through-DBNMS_11-May-2026.pdf",
+    "file": "npc-advisory-2026-02.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-2017-01",
+    "title": "Designation of Data Protection Officers",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "dateIssued": "2017-03-14",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2022/01/NPC-Advisory-2017-01-sgd.pdf",
+    "file": "npc-advisory-2017-01.pdf"
+  },
+  {
+    "shortCode": "NPC-ADV-2017-03",
+    "title": "Guidelines on Privacy Impact Assessments",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2022/01/NPC_AdvisoryNo.2017-03.pdf",
+    "file": "npc-advisory-2017-03.pdf"
+  },
+  {
+    "shortCode": "NPC-16-01",
+    "title": "Security of Personal Data in Government Agencies",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "dateIssued": "2016-10-10",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2022/01/Sgd-NPC-Circular-16-01-Security-of-Personal-Data-in-Government-Agencies.pdf",
+    "file": "npc-16-01.pdf",
+    "isCurrent": false,
+    "supersededBy": "NPC-2023-06"
+  },
+  {
+    "shortCode": "NPC-16-02",
+    "title": "Data Sharing Agreements Involving Government Agencies",
+    "issuer": "National Privacy Commission",
+    "docType": "circular",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2022/01/Sgd-NPC-Circular-16-02-Data-Sharing-Agreements-Involving-Government-Agencies.pdf",
+    "file": "npc-16-02.pdf",
+    "isCurrent": false,
+    "supersededBy": "NPC-2020-03"
+  },
+  {
+    "shortCode": "NPC-ADV-CCTV-2020",
+    "title": "Guidelines on the Use of Closed-circuit Television (CCTV) Systems",
+    "issuer": "National Privacy Commission",
+    "docType": "advisory",
+    "dateIssued": "2020-11-16",
+    "sourceUrl": "https://privacy.gov.ph/wp-content/uploads/2020/11/Advisory-on-CCTV-16NOV2020-FINAL.pdf",
+    "file": "npc-advisory-cctv-2020.pdf",
+    "isCurrent": false,
+    "supersededBy": "NPC-2024-02"
+  }
+]
