@@ -8,6 +8,10 @@
  * Re-running replaces the chunks for any document whose short_code is
  * already present, so fixing a chunking bug is a one-command redo.
  */
+import { applyDevDnsOverride } from '../src/lib/dns';
+
+applyDevDnsOverride();
+
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import pdf from 'pdf-parse/lib/pdf-parse.js';
