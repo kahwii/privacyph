@@ -2,7 +2,7 @@
   "name": "privacyph",
   "version": "0.1.0",
   "private": true,
-  "description": "Data Privacy Act compliance assistant for Philippine SMEs — grounded RAG chatbot, breach-notification wizard, and compliance scorecard.",
+  "description": "Data Privacy Act compliance assistant for Philippine SMEs \u2014 grounded RAG chatbot, breach-notification wizard, and compliance scorecard.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,8 @@
     "fetch-corpus": "node scripts/fetch-corpus.mjs",
     "check-env": "node scripts/check-env.mjs",
     "eval": "tsx --env-file=.env.local eval/run-eval.ts",
-    "test": "node --test --experimental-strip-types --no-warnings \"tests/*.test.ts\""
+    "test": "node --test --experimental-strip-types --no-warnings \"tests/*.test.ts\"",
+    "check-citations": "node scripts/check-citations.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",

@@ -102,6 +102,28 @@ first. This is lexical mismatch rather than a ranking problem, which pointed at
 hybrid retrieval as the next intervention rather than more tuning of
 `RETRIEVAL_TOP_K`. So it was built and measured. It lost.
 
+### No invented citations, across 78 of them
+
+`npm run check-citations` re-reads the corpus PDFs and checks that every
+citation in a result file names a section that actually exists in the document
+it names. Over the 18 answers of the run above:
+
+| | |
+|---|---|
+| Citations emitted | 78 (47 distinct, across 10 issuances) |
+| Citations that do not resolve | **0** |
+
+That is the failure mode this tool had to avoid above all others, because it is
+the one a reader cannot catch without opening the issuance themselves. It is
+now checked rather than hoped for, and the check carries its own negative
+control — `--self-test` feeds it a fabricated section number and a fabricated
+document and fails if either passes.
+
+What it does not establish is that those sections say what the answers claim.
+That is still scored by hand in `answer_score_1to5`. A clean run here narrows
+the question from *"is any of this made up?"* to *"is this reading correct?"*,
+which is the one a human can actually answer.
+
 ### Hybrid retrieval was built, measured, and is not the default
 
 `supabase/hybrid.sql` adds a `tsvector` column over the same chunks and fuses
@@ -220,6 +242,7 @@ Useful while working:
 npm test                                           # 19 unit tests
 npm run eval                                       # retrieval benchmark (dense)
 npm run eval -- --mode=hybrid                      # the same benchmark, hybrid
+npm run check-citations                            # every citation vs the PDFs
 node scripts/inspect-chunks.mjs                    # chunking report, no API cost
 node --env-file=.env.local scripts/list-models.mjs # what the key can actually use
 node --env-file=.env.local scripts/probe-gemini.mjs
