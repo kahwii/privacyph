@@ -1,27 +1,33 @@
+import Masthead from '@/components/Masthead';
 import BreachWizard from '@/components/BreachWizard';
+import corpus from '../../../docs/corpus.json';
 
 export default function BreachPage() {
+  const count = (corpus as { isCurrent?: boolean }[]).filter(
+    (d) => d.isCurrent !== false
+  ).length;
+
   return (
-    <main className="shell">
-      <nav className="tabs">
-        <a href="/">Ask</a>
-        <a href="/breach">Breach check</a>
-      </nav>
+    <>
+      <Masthead corpusCount={count} />
 
-      <h1>Breach notification check</h1>
-      <p className="sub">
-        Works through the three-element notification test and the timing rules under
-        RA 10173 Sec. 20, its IRR Rule IX Sec. 38, and NPC Circular 16-03.
-      </p>
+      <main className="page">
+        <div className="page-intro">
+          <h1>Is this breach notifiable, and by when?</h1>
+          <p>
+            Works through the three-element test and the timing rules in RA 10173
+            Sec. 20, IRR Rule IX Sec. 38, and NPC Circular 16-03.
+          </p>
+          <p className="notice">
+            General information, not legal advice. The window is short and the
+            consequences of missing it are real — confirm the result with your DPO or
+            counsel. Describe the categories of data involved; do not enter the actual
+            personal data of the people affected.
+          </p>
+        </div>
 
-      <div className="banner">
-        General information only, not legal advice. The notification deadline is short
-        and the consequences of missing it are real — confirm the result with your DPO
-        or counsel. Do not enter the actual personal data of affected individuals here;
-        describe the categories only.
-      </div>
-
-      <BreachWizard />
-    </main>
+        <BreachWizard />
+      </main>
+    </>
   );
 }

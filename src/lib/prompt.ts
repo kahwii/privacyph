@@ -104,17 +104,20 @@ export function sourcesOnlyAnswer(chunks: RetrievedChunk[]): string {
     .map((c) => {
       const title = c.heading ? `${c.section_label} — ${c.heading}` : c.section_label;
       const text = c.content.replace(/\s+/g, ' ').trim();
-      const excerpt = text.length > 700 ? `${text.slice(0, 700).trimEnd()}…` : text;
-      return `[${c.short_code}, ${title}]\n${excerpt}`;
+      // 320 characters is roughly the opening of a provision: enough to see
+      // whether it is the one you need, short enough that three of them do
+      // not become a wall. The citation links to the full text.
+      const excerpt = text.length > 320 ? `${text.slice(0, 320).trimEnd()}…` : text;
+      return `> [${c.short_code}, ${title}]\n> ${excerpt}`;
     })
     .join('\n\n');
 
   return (
-    'The language model is unavailable right now, so this answer is not ' +
-    'summarised — but the search found the provisions that govern your ' +
-    'question, and here they are in full:\n\n' +
+    'The model is unavailable, so this is not summarised. The search did find ' +
+    'the provisions that govern your question — here are the openings, with ' +
+    'links to the full text in the margin.\n\n' +
     body +
-    '\n\nAsk again in a moment for a summarised answer.'
+    '\n\nAsk again shortly for a summarised answer.'
   );
 }
 

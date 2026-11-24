@@ -11,6 +11,11 @@
  * as the recommended sizes.
  */
 
+import { applyDevDnsOverride } from './dns';
+
+// Runs once, when this module is first loaded, before any request goes out.
+applyDevDnsOverride();
+
 type Provider = 'openai' | 'gemini';
 
 const PROVIDER = (process.env.LLM_PROVIDER ?? 'openai') as Provider;

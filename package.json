@@ -10,7 +10,7 @@
     "lint": "next lint",
     "ingest": "tsx --env-file=.env.local scripts/ingest.ts",
     "fetch-corpus": "node scripts/fetch-corpus.mjs",
-    "setup-env": "node scripts/setup-env.mjs",
+    "check-env": "node scripts/check-env.mjs",
     "eval": "tsx --env-file=.env.local eval/run-eval.ts",
     "test": "node --test --experimental-strip-types --no-warnings \"tests/*.test.ts\""
   },

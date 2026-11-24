@@ -114,13 +114,24 @@ export async function POST(req: NextRequest) {
     // first is temporary and the user can simply try again; telling them
     // something went wrong invites them to go looking for their own mistake.
     const message = (err as Error).message ?? '';
-    const transient = /503|429|high demand|quota|timeout|aborted|every generation model failed/i.test(message);
+    const transient =
+      /503|429|high demand|quota|timeout|aborted|every generation model failed/i.test(message) ||
+      // Network-level failures: DNS, refused connection, dropped socket.
+      /fetch failed|ENOTFOUND|EAI_AGAIN|ENOENT|ECONNREFUSED|ECONNRESET|getaddrinfo|network/i.test(
+        message + ' ' + String((err as { cause?: { code?: string } })?.cause?.code ?? '')
+      );
+
+    const offline = /fetch failed|ENOTFOUND|EAI_AGAIN|ENOENT|getaddrinfo/i.test(
+      message + ' ' + String((err as { cause?: { code?: string } })?.cause?.code ?? '')
+    );
 
     return NextResponse.json(
       {
         error: transient
-          ? 'The language model is busy right now — this is a free-tier limit, not your setup. Try again in a moment.'
-          : 'Something went wrong. Check the server log.',
+          ? offline
+            ? 'Could not reach the model — the connection dropped. Check your internet and ask again.'
+            : 'The model is busy right now. This is a free-tier limit, not your setup. Ask again in a moment.'
+          : 'Something went wrong on the server. The dev server log has the detail.',
         transient,
       },
       { status: transient ? 503 : 500 }
