@@ -43,39 +43,71 @@ scored per dimension with a prioritised gap list.
 
 ## Results
 
-Measured by `npm run eval` against `eval/questions.csv`. Raw per-question
-output is committed under `eval/results/`.
+Measured by `npm run eval` over `eval/questions.csv` — 39 questions, 33
+scorable and 6 deliberately out of corpus. Raw per-question output is committed
+under `eval/results/`.
 
-| Metric | Result | Notes |
+| Metric | Result | |
 |---|---|---|
-| Retrieval accuracy | **100%** (14/14) | Expected issuance present in the retrieved set |
-| Top-1 accuracy | **57.1%** (8/14) | Expected issuance ranked first |
-| Refusal accuracy | 1/1 scored | Out-of-corpus questions correctly declined |
-| Unit tests | 19 passing | Breach logic and chunker |
-| Type errors | 0 | `tsc --noEmit` clean |
+| Retrieval accuracy | **93.9%** | 31/33 — governing issuance present in the retrieved set |
+| Top-1 accuracy | **57.6%** | 19/33 — governing issuance ranked first |
+| Multi-hop coverage | **72.7%** | 8/11 — both issuances found where two are needed |
+| Refusal accuracy | **100%** | 6/6 out-of-corpus questions declined |
+| English / Tagalog | 92.6% / 100% | 25/27 and 6/6 |
+| Unit tests | 19 passing | breach logic and chunker |
 
-**The 100% needs a caveat, and the caveat matters more than the number.** The
-14 questions are self-authored and several name the circular they are looking
-for, which makes them closer to lookups than to how a real DPO would ask. The
-next version of this benchmark adds paraphrased questions that name no
-document, and multi-hop questions that require two issuances to answer. A
-benchmark you wrote yourself is a floor, not a score.
+The questions do not name the issuance they are looking for. "Do we have to
+tell the NPC anything about the systems we run?" rather than "which circular
+governs registration" — which is how a DPO actually asks, and considerably
+harder to retrieve against. An earlier 16-question version of this benchmark
+scored 100%, and that number meant very little: several of its questions named
+the circular in the question.
 
-### What the similarity distribution showed
+### The refusal is not done by the threshold
+
+All six out-of-corpus questions were declined — and **none of them was caught
+by the retrieval floor**. Every one scored above it and was refused by the
+model after reading what came back.
 
 | | Cosine similarity |
 |---|---|
-| On-topic questions | 0.646 – 0.792 |
-| Deliberately off-topic controls | 0.579 – 0.607 |
+| On-topic questions | 0.614 – 0.750 |
+| Out-of-corpus controls | 0.506 – 0.724 |
 
-An off-topic question scored 0.579 against a data privacy corpus. On a corpus
-where every document shares the same legal and governmental register, cosine
-similarity alone separates relevant from irrelevant by about 0.04 — too thin
-a margin to set a threshold on with this sample size.
+The ranges overlap, and not marginally: *"What does Singapore's PDPA require
+for breach notification?"* scored **0.724**, higher than fourteen legitimate
+questions. On a corpus where every document shares one legal register, a
+plausible-sounding foreign statute is lexically indistinguishable from a real
+one.
 
-So `MIN_SIMILARITY` is a backstop, not the defence. The model-level
-`INSUFFICIENT_CONTEXT` check is what actually prevents fabricated answers, and
-the eval reports both paths separately because they fail independently.
+So `MIN_SIMILARITY` cannot be the defence, and raising it would reject good
+questions before it rejected that one. The model-level `INSUFFICIENT_CONTEXT`
+check is what actually prevents fabricated answers; the floor is a backstop for
+the case where retrieval returns nothing at all.
+
+### What the two misses have in common
+
+Both failures share one cause, which the per-question CSV makes visible:
+
+- *"A breach exposed CCTV footage of our customers. What are our duties?"* →
+  retrieved the CCTV circular, missed breach management entirely.
+- *"Our cloud provider stores our data in Singapore. Is that allowed?"* →
+  retrieved the security circular, missed cross-border transfers.
+
+In both, the question's vocabulary points at one domain while the governing
+issuance sits under a legal term the question never uses — it says "stores in
+Singapore", not "cross-border transfer". Rephrased as *"we share customer data
+with a partner company abroad"*, the same cross-border advisory is retrieved
+first. This is lexical mismatch rather than a ranking problem, which points at
+hybrid BM25 and dense retrieval, or query expansion, as the next intervention
+rather than more tuning of `RETRIEVAL_TOP_K`.
+
+### Tagalog
+
+Six Tagalog questions, all retrieved correctly. The sample is too small to
+claim parity, but it is evidence against the obvious worry — that a Tagalog
+question against an English corpus would degrade retrieval — and the harness
+now scores the two languages separately so a regression would show.
 
 ## Design decisions worth defending
 
@@ -173,7 +205,8 @@ issuances are retained with their replacements recorded.
 - General information, not legal advice. The UI says so on every page.
 - The corpus is a snapshot. Amendments to RA 10173 have been pending in
   Congress across several sessions, and the NPC issues new circulars regularly.
-- The benchmark is 16 questions and self-authored. See the caveat above.
+- The benchmark is 39 questions and self-authored. Written by the same person
+  who built the retriever, which is a real limit on what it can prove.
 - Answer correctness is scored by hand. An LLM judge would need validating
   against the manual scores before it could be trusted.
 - Free-tier generation is frequently rate-limited; the degradation path exists
@@ -211,8 +244,10 @@ resolve through 1.1.1.1 instead. A deployment has no such problem.
 
 ## Roadmap
 
-- [ ] Expand the benchmark: paraphrased questions, multi-hop questions, a
+- [x] Expand the benchmark: paraphrased questions, multi-hop questions, a
       Tagalog subset scored separately
+- [ ] Hybrid BM25 + dense retrieval, to close the lexical-mismatch misses the
+      benchmark exposed
 - [ ] Admin dashboard: query volume, unanswered questions, feedback, confidence
       distribution
 - [ ] Compliance scorecard across five dimensions
