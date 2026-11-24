@@ -52,7 +52,7 @@ under `eval/results/`.
 | Retrieval accuracy | **93.9%** | 31/33 — governing issuance present in the retrieved set |
 | Top-1 accuracy | **57.6%** | 19/33 — governing issuance ranked first |
 | Multi-hop coverage | **72.7%** | 8/11 — both issuances found where two are needed |
-| Refusal accuracy | **100%** | 6/6 out-of-corpus questions declined |
+| Marker compliance | **100%** | 6/6 out-of-corpus questions declined *with* the refusal marker — see Limitations |
 | English / Tagalog | 92.6% / 100% | 25/27 and 6/6 |
 | Unit tests | 19 passing | breach logic and chunker |
 
@@ -253,15 +253,16 @@ issuances are retained with their replacements recorded.
   against the manual scores before it could be trusted.
 - Free-tier generation is frequently rate-limited; the degradation path exists
   because of it.
-- **Refusal is not deterministic, and has failed once under measurement.** The
-  6/6 figure above comes from a run in which every control's generation
-  completed. In a later run, *"What is the maximum GDPR fine for a company in
-  Germany?"* was answered rather than declined. That run used hybrid retrieval,
-  so the context differed — but the dense run never generated an answer for
-  that control (rate limit), so there is nothing to compare it against and no
-  basis for blaming hybrid. What it establishes is narrower and worth stating:
-  the model-level refusal that the section above shows is doing the real work
-  is a judgment, not a guarantee, and it has been observed to go the other way.
+- **Refusal and the refusal marker are two different things, and the second
+  one fails.** Asked *"What is the maximum GDPR fine for a company in
+  Germany?"*, the model declined — *"I do not have the answer to your
+  question"* — but did not emit the `INSUFFICIENT_CONTEXT` marker that rule 8
+  requires. The answer was safe; the protocol was not. In the app that marker
+  is what suppresses the citation list, so a refusal without it renders four
+  sources underneath, implying they support a conclusion that was never
+  reached. The benchmark counts the marker, so what it reports as "refusal
+  accuracy" is really marker compliance; it now says so, and prints any
+  unmarked control for a human to read instead of scoring it automatically.
   Open issue.
 - Not built for real client data. RLS confines users to their own rows, but
   this has had no security review.
@@ -302,7 +303,8 @@ resolve through 1.1.1.1 instead. A deployment has no such problem.
       default (see above); kept behind `--mode=hybrid`
 - [ ] A language-aware full-text configuration, so the lexical side stops
       penalising Tagalog questions, then re-measure the hybrid comparison
-- [ ] Investigate the refusal failure recorded under Limitations
+- [ ] Make the refusal marker reliable, or detect refusal from the answer
+      rather than from a prefix the model has to remember to write
 - [ ] Admin dashboard: query volume, unanswered questions, feedback, confidence
       distribution
 - [ ] Compliance scorecard across five dimensions

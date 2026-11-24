@@ -171,7 +171,7 @@ function verdict(o: Outcome): string {
     if (o.refusedByFloor) return 'refused floor';
     if (o.declinedByModel) return 'declined model';
     if (o.generationFailed) return 'unscored';
-    return 'ANSWERED IT';
+    return 'no marker — read';
   }
   if (!o.retrievedSources.includes(o.row.expected_source)) return 'MISS';
   return o.retrievedSources[0] === o.row.expected_source ? 'hit top1' : 'hit in-set';
@@ -211,10 +211,26 @@ function report(all: Outcome[]) {
   const unscored = controls.filter((o) => o.generationFailed && !o.refusedByFloor);
   const scored = controls.filter((o) => !(o.generationFailed && !o.refusedByFloor));
   const correct = scored.filter((o) => o.refusedByFloor || o.declinedByModel);
-  line('refusal accuracy', correct.length, scored.length);
+  line('marker compliance', correct.length, scored.length);
   const byModel = correct.filter((o) => !o.refusedByFloor).length;
   if (byModel) console.log(`    ${byModel} of those passed the retrieval floor and were caught by the model`);
   if (unscored.length) console.log(`    ${unscored.length} unscored — generation never ran, so there was no answer to judge`);
+
+  // What this counts is the INSUFFICIENT_CONTEXT marker, not refusal. A model
+  // can decline in prose and omit the marker, and the two are not the same
+  // failure: the answer is safe, but the UI renders citations under it, which
+  // is exactly what the marker exists to prevent. Calling such a row
+  // "ANSWERED IT" reported a fabricated answer that never happened -- twice.
+  // It is now flagged for a human to read rather than scored automatically.
+  const unmarked = scored.filter((o) => !o.refusedByFloor && !o.declinedByModel);
+  if (unmarked.length) {
+    console.log(
+      `    ${unmarked.length} produced prose with no marker — READ THESE. ` +
+        'The model may have declined correctly without emitting the marker;\n' +
+        '    that is a protocol failure, not a fabricated answer. Judge by hand:'
+    );
+    for (const o of unmarked) console.log(`      #${o.row.id}  ${o.row.question}`);
+  }
 
   console.log('\n--- similarity distribution ----------------------');
   const on = scorable.map((o) => o.confidence);
