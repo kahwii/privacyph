@@ -2,6 +2,10 @@
  * Retrieval benchmark.
  *
  *   npm run eval
+ *   npm run eval -- --mode=hybrid
+ *
+ * --mode overrides RETRIEVAL_MODE for one run, so the dense/hybrid A/B is two
+ * commands rather than an edit to .env.local between them.
  *
  * Reports, per question and in aggregate:
  *
@@ -24,9 +28,24 @@
  * Answer correctness stays manual: open the CSV in eval/results and score the
  * answer column 1-5 by hand.
  */
+import { applyDevDnsOverride } from '../src/lib/dns';
+
+applyDevDnsOverride();
+
+// Before anything calls retrieve(). retrieval.ts reads RETRIEVAL_MODE per
+// call for exactly this reason -- see the comment on mode() there.
+const modeFlag = process.argv.find(a => a.startsWith('--mode='))?.slice(7);
+if (modeFlag) {
+  if (modeFlag !== 'dense' && modeFlag !== 'hybrid') {
+    console.error(`unknown --mode=${modeFlag} (expected dense or hybrid)`);
+    process.exit(1);
+  }
+  process.env.RETRIEVAL_MODE = modeFlag;
+}
+
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { retrieve, rerank, supersessions } from '../src/lib/retrieval';
+import { retrieve, rerank, supersessions, retrievalMode } from '../src/lib/retrieval';
 import {
   SYSTEM_PROMPT,
   buildUserPrompt,
@@ -102,6 +121,8 @@ async function main() {
   const rows = parseCsv(readFileSync(join(process.cwd(), 'eval/questions.csv'), 'utf8'));
   const superseded = await supersessions();
   const outcomes: Outcome[] = [];
+
+  console.log(`\nretrieval mode: ${retrievalMode()}   questions: ${rows.length}\n`);
 
   for (const row of rows) {
     const chunks = rerank(row.question, await retrieve(row.question));

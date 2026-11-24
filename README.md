@@ -98,9 +98,48 @@ In both, the question's vocabulary points at one domain while the governing
 issuance sits under a legal term the question never uses — it says "stores in
 Singapore", not "cross-border transfer". Rephrased as *"we share customer data
 with a partner company abroad"*, the same cross-border advisory is retrieved
-first. This is lexical mismatch rather than a ranking problem, which points at
-hybrid BM25 and dense retrieval, or query expansion, as the next intervention
-rather than more tuning of `RETRIEVAL_TOP_K`.
+first. This is lexical mismatch rather than a ranking problem, which pointed at
+hybrid retrieval as the next intervention rather than more tuning of
+`RETRIEVAL_TOP_K`. So it was built and measured. It lost.
+
+### Hybrid retrieval was built, measured, and is not the default
+
+`supabase/hybrid.sql` adds a `tsvector` column over the same chunks and fuses
+dense and lexical rankings with Reciprocal Rank Fusion (k = 60). It runs behind
+a flag — `npm run eval -- --mode=hybrid` — because the benchmark says dense is
+better:
+
+| Metric | dense *(default)* | hybrid |
+|---|---|---|
+| Retrieval accuracy | **93.9%** (31/33) | 87.9% (29/33) |
+| Top-1 accuracy | 57.6% (19/33) | 57.6% (19/33) |
+| Multi-hop coverage | **72.7%** (8/11) | 63.6% (7/11) |
+| English | **92.6%** (25/27) | 88.9% (24/27) |
+| Tagalog | **100%** (6/6) | 83.3% (5/6) |
+
+The aggregate hides the interesting part. Hybrid fixed exactly the question it
+was designed for — *"A breach exposed CCTV footage of our customers"* now
+retrieves breach management, which dense missed. It did not fix the other
+lexical-mismatch miss. And it broke three questions dense had answered,
+including the only Tagalog failure in either run: *"Magkano ang multa kapag
+hindi kami nag-register sa NPC?"*
+
+That Tagalog regression is the predicted one. The full-text configuration is
+`english`, so a Tagalog question contributes almost no usable lexemes while the
+few that survive stemming — proper nouns, `NPC` — pull the lexical ranking
+toward documents that merely mention them. On English questions the lexical
+side is a second opinion; on Tagalog questions it is noise with a vote.
+
+One intervention, one question fixed, three broken. The honest conclusion is
+that lexical fusion is the wrong tool for this corpus as configured, not that
+it needs another round of tuning — every document here shares one legal
+register, so term overlap carries much less signal than it would across a
+heterogeneous corpus. A language-aware full-text configuration, or restricting
+fusion to questions that look like citation lookups, would be the next thing to
+measure. Neither is implemented, because neither has been measured.
+
+The code stays in the repository. A negative result that is reproducible is
+worth more than a deleted branch.
 
 ### Tagalog
 
@@ -167,7 +206,9 @@ npm run setup-env          # prompts for the three credentials
 ```
 
 1. Create a Supabase project. Run `supabase/schema.sql`, then
-   `supabase/grants.sql`, in the SQL Editor.
+   `supabase/grants.sql`, in the SQL Editor. `supabase/hybrid.sql` is optional
+   and only needed to reproduce the hybrid comparison above; the app does not
+   use it by default.
 2. `npm run fetch-corpus` — downloads 24 of the 25 PDFs. RA 10173 is served
    from behind Cloudflare and must be saved by hand; the script prints the link.
 3. `npm run ingest` — chunks, embeds and loads the corpus (~6 minutes).
@@ -177,7 +218,8 @@ Useful while working:
 
 ```bash
 npm test                                           # 19 unit tests
-npm run eval                                       # retrieval benchmark
+npm run eval                                       # retrieval benchmark (dense)
+npm run eval -- --mode=hybrid                      # the same benchmark, hybrid
 node scripts/inspect-chunks.mjs                    # chunking report, no API cost
 node --env-file=.env.local scripts/list-models.mjs # what the key can actually use
 node --env-file=.env.local scripts/probe-gemini.mjs
@@ -211,6 +253,16 @@ issuances are retained with their replacements recorded.
   against the manual scores before it could be trusted.
 - Free-tier generation is frequently rate-limited; the degradation path exists
   because of it.
+- **Refusal is not deterministic, and has failed once under measurement.** The
+  6/6 figure above comes from a run in which every control's generation
+  completed. In a later run, *"What is the maximum GDPR fine for a company in
+  Germany?"* was answered rather than declined. That run used hybrid retrieval,
+  so the context differed — but the dense run never generated an answer for
+  that control (rate limit), so there is nothing to compare it against and no
+  basis for blaming hybrid. What it establishes is narrower and worth stating:
+  the model-level refusal that the section above shows is doing the real work
+  is a judgment, not a guarantee, and it has been observed to go the other way.
+  Open issue.
 - Not built for real client data. RLS confines users to their own rows, but
   this has had no security review.
 
@@ -246,8 +298,11 @@ resolve through 1.1.1.1 instead. A deployment has no such problem.
 
 - [x] Expand the benchmark: paraphrased questions, multi-hop questions, a
       Tagalog subset scored separately
-- [ ] Hybrid BM25 + dense retrieval, to close the lexical-mismatch misses the
-      benchmark exposed
+- [x] Hybrid lexical + dense retrieval — built, measured, rejected as the
+      default (see above); kept behind `--mode=hybrid`
+- [ ] A language-aware full-text configuration, so the lexical side stops
+      penalising Tagalog questions, then re-measure the hybrid comparison
+- [ ] Investigate the refusal failure recorded under Limitations
 - [ ] Admin dashboard: query volume, unanswered questions, feedback, confidence
       distribution
 - [ ] Compliance scorecard across five dimensions

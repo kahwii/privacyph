@@ -10,20 +10,65 @@ export interface RetrievedChunk {
   doc_title: string;
   source_url: string;
   similarity: number;
+  /** Position in the dense list, 0 if the lexical side found it alone. */
+  dense_rank?: number;
+  /** Position in the lexical list, 0 if the dense side found it alone. */
+  lexical_rank?: number;
+}
+
+/**
+ * RETRIEVAL_MODE=hybrid runs dense and lexical search together and fuses the
+ * ranks; dense is the original behaviour. Both are kept so the benchmark can
+ * be run against either and the difference reported, rather than the change
+ * being asserted.
+ *
+ * Read per call, not once at module scope: static imports are hoisted, so a
+ * caller that sets process.env.RETRIEVAL_MODE in its own module body (the
+ * eval harness does, from --mode=) would set it after this module had already
+ * been evaluated, and the flag would silently do nothing.
+ */
+function mode(): 'dense' | 'hybrid' {
+  return (process.env.RETRIEVAL_MODE ?? 'dense') as 'dense' | 'hybrid';
 }
 
 export async function retrieve(question: string): Promise<RetrievedChunk[]> {
   const embedding = await embed(question, 'RETRIEVAL_QUERY');
   const db = serviceClient();
 
+  const matchCount = Number(process.env.RETRIEVAL_TOP_K ?? 8);
+  const minSimilarity = Number(process.env.MIN_SIMILARITY ?? 0.35);
+
+  if (mode() === 'hybrid') {
+    const { data, error } = await db.rpc('match_chunks_hybrid', {
+      query_embedding: embedding,
+      query_text: question,
+      match_count: matchCount,
+      min_similarity: minSimilarity,
+    });
+
+    if (!error) return (data ?? []) as RetrievedChunk[];
+
+    // The migration in supabase/hybrid.sql may not have been run yet. Falling
+    // back keeps the app working rather than failing on a missing function,
+    // and says so once rather than silently behaving differently.
+    console.warn(
+      `[retrieval] hybrid unavailable (${error.message}); falling back to dense. ` +
+        'Run supabase/hybrid.sql to enable it.'
+    );
+  }
+
   const { data, error } = await db.rpc('match_chunks', {
     query_embedding: embedding,
-    match_count: Number(process.env.RETRIEVAL_TOP_K ?? 8),
-    min_similarity: Number(process.env.MIN_SIMILARITY ?? 0.35),
+    match_count: matchCount,
+    min_similarity: minSimilarity,
   });
 
   if (error) throw new Error(`Retrieval failed: ${error.message}`);
   return (data ?? []) as RetrievedChunk[];
+}
+
+export function retrievalMode(): string {
+  return mode();
 }
 
 /** Keyword boost for citation-style queries ("what does Sec. 18 say"). */
