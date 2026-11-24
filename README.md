@@ -11,6 +11,17 @@ repetitive and answerable from public text.
 
 **[privacyph.vercel.app](https://privacyph.vercel.app)**
 
+![A grounded answer, with the provisions it rests on in the margin](docs/screenshots/answer.png)
+
+*Every statement carries the section it came from, and the authorities sit
+beside the answer rather than underneath it.*
+
+![An out-of-corpus question, declined, with no citations](docs/screenshots/refusal.png)
+
+*Asked something the corpus does not cover, it says so and cites nothing. The
+reading beside it — retrieved, no answer found in it — distinguishes a question
+the search could not reach from one the model read and could not answer.*
+
 > Corpus verified: 23 November 2026 · 25 issuances · 548 indexed sections
 
 ---
