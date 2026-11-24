@@ -2,7 +2,8 @@
  * Fills the three credential values in .env.local by asking for them here,
  * in your terminal.
  *
- *   node scripts/setup-env.mjs
+ *   node scripts/setup-env.mjs            fill in whatever is missing
+ *   node scripts/setup-env.mjs --rotate   re-ask for everything, set or not
  *
  * Nothing you type is printed back, and nothing leaves this machine. Each
  * value is shape-checked before it is written, so a half-copied key or a
@@ -33,6 +34,7 @@ const FIELDS = [
   },
   {
     key: 'SUPABASE_SERVICE_ROLE_KEY',
+    secret: true,
     label: 'Supabase secret key (the NEW one, after rotating)',
     where: 'Supabase dashboard > Project Settings > API Keys > Secret keys',
     example: 'sb_secret_...',
@@ -42,6 +44,7 @@ const FIELDS = [
   },
   {
     key: 'LLM_API_KEY',
+    secret: true,
     label: 'Google Gemini API key',
     where: 'https://aistudio.google.com/apikey',
     example: 'AQ.… or AIza…',
@@ -55,18 +58,58 @@ const FIELDS = [
 
 const PLACEHOLDER = /^$|^<|placeholder|your[-_ ]|api key$|galing sa rotation/i;
 
+// Rotating a credential means replacing a value that is already present, so
+// "skip anything already set" — correct for first-time setup — is exactly
+// wrong here. Without this flag the script silently keeps the key you are
+// trying to retire.
+const rotate = process.argv.includes('--rotate');
+
 const rl = createInterface({ input: stdin, output: stdout });
+
+/**
+ * Reads a value without echoing it.
+ *
+ * The first version of this script printed every character as it was typed,
+ * which put the key into the terminal scrollback — and from there into every
+ * screenshot and pasted block of output. Three credentials leaked that way
+ * before anyone noticed, and each rotation re-exposed its replacement.
+ *
+ * Asking the user to be careful does not fix that. Not echoing does. A prompt
+ * that takes a secret should never print it back.
+ */
+async function askSecret(prompt) {
+  stdout.write(prompt);
+  const restore = rl._writeToOutput;
+  rl._writeToOutput = () => {};
+  const answer = await rl.question('');
+  rl._writeToOutput = restore;
+  stdout.write('\n');
+  return answer;
+}
 let env = readFileSync(envPath, 'utf8');
 let changed = 0;
 
-console.log('\nFilling in .env.local — press Enter to skip any field.\n');
+console.log(
+  rotate
+    ? '\nRotating .env.local — press Enter to keep the current value.\n'
+    : '\nFilling in .env.local — press Enter to skip any field.\n'
+);
 
 for (const field of FIELDS) {
   const current = env.match(new RegExp(`^${field.key}=(.*)$`, 'm'))?.[1]?.trim() ?? '';
 
-  if (current && !PLACEHOLDER.test(current)) {
-    console.log(`  ${field.key} — already set, skipping`);
+  if (current && !PLACEHOLDER.test(current) && !rotate) {
+    console.log(`  ${field.key} — already set, skipping (--rotate to replace)`);
     continue;
+  }
+
+  if (current && !PLACEHOLDER.test(current)) {
+    // Never print the tail of a secret either — that was the other leak.
+    console.log(
+      field.secret
+        ? `\n${field.key} is currently set (${current.length} characters)`
+        : `\n${field.key} currently ends in …${current.slice(-6)}`
+    );
   }
 
   console.log(`\n${field.label}`);
@@ -74,7 +117,11 @@ for (const field of FIELDS) {
   console.log(`  looks like: ${field.example}`);
 
   for (let tries = 0; tries < 3; tries++) {
-    const answer = (await rl.question('  paste it here: ')).trim();
+    const answer = (
+      field.secret
+        ? await askSecret('  paste it here (input hidden): ')
+        : await rl.question('  paste it here: ')
+    ).trim();
 
     if (!answer) {
       console.log('  skipped.');
