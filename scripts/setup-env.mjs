@@ -67,7 +67,7 @@ const rotate = process.argv.includes('--rotate');
 const rl = createInterface({ input: stdin, output: stdout });
 
 /**
- * Reads a value without echoing it.
+ * Reads a value without echoing it. Used for every prompt.
  *
  * The first version of this script printed every character as it was typed,
  * which put the key into the terminal scrollback — and from there into every
@@ -77,7 +77,7 @@ const rl = createInterface({ input: stdin, output: stdout });
  * Asking the user to be careful does not fix that. Not echoing does. A prompt
  * that takes a secret should never print it back.
  */
-async function askSecret(prompt) {
+async function askHidden(prompt) {
   stdout.write(prompt);
   const restore = rl._writeToOutput;
   rl._writeToOutput = () => {};
@@ -117,11 +117,15 @@ for (const field of FIELDS) {
   console.log(`  looks like: ${field.example}`);
 
   for (let tries = 0; tries < 3; tries++) {
-    const answer = (
-      field.secret
-        ? await askSecret('  paste it here (input hidden): ')
-        : await rl.question('  paste it here: ')
-    ).trim();
+    // Every field reads hidden, including the ones that hold nothing secret.
+    //
+    // Masking only the fields known to be secret is not enough: a key pasted
+    // into the wrong prompt is echoed by whichever field it landed in. That
+    // happened — two freshly created keys were burned by being pasted into
+    // the Project URL prompt, which had no reason to hide anything and so
+    // printed both. The prompt cannot know what the user is about to paste,
+    // so none of them print.
+    const answer = (await askHidden('  paste it here (input hidden): ')).trim();
 
     if (!answer) {
       console.log('  skipped.');
@@ -132,8 +136,18 @@ for (const field of FIELDS) {
       continue;
     }
 
+    if (!field.secret && /^(sb_secret_|AQ\.|AIza|eyJ)/.test(answer)) {
+      console.log(
+        '  that looks like an API key, and this field is not one. Nothing was\n' +
+        '  printed or saved — treat that key as still safe and paste it at the\n' +
+        '  right prompt.'
+      );
+      continue;
+    }
+
     const verdict = field.check(answer);
     if (verdict !== true) {
+      // Never echo the rejected value; it may be a secret in the wrong place.
       console.log(`  that does not look right — ${verdict}`);
       continue;
     }
