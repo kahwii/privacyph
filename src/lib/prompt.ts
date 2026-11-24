@@ -132,6 +132,34 @@ export function sourcesOnlyAnswer(chunks: RetrievedChunk[]): string {
  */
 export const INSUFFICIENT = 'INSUFFICIENT_CONTEXT';
 
+/**
+ * Does the answer actually cite anything?
+ *
+ * Rule 8 asks the model to prefix a refusal with INSUFFICIENT_CONTEXT so the
+ * citation list can be suppressed. The model does not always remember. Asked
+ * for the maximum GDPR fine in Germany it declined correctly -- "I do not have
+ * the answer to your question" -- and omitted the marker, so four Philippine
+ * issuances were about to be rendered underneath as though they supported it.
+ *
+ * This is the check that cannot be forgotten, because it reads what the model
+ * wrote rather than what it was asked to write. Rule 2 requires a citation for
+ * every substantive statement, so an answer carrying none is, by the system's
+ * own definition, not grounded in the context -- whatever prefix it does or
+ * does not have.
+ *
+ * Known cost: a supersession answer ("the 2020 CCTV advisory was replaced by
+ * NPC Circular No. 2024-02") is correct and cites nothing, because it is
+ * answered from the repealed-issuances list rather than from a chunk. It
+ * loses its sources panel too. That is the conservative direction to fail in
+ * -- showing nothing is a smaller error than showing sources that support
+ * nothing -- but it is a real loss and not a free win.
+ */
+const CITATION = /\[[A-Z0-9-]{2,},[^\]]+\]/;
+
+export function citesSomething(answer: string): boolean {
+  return CITATION.test(answer);
+}
+
 export function stripInsufficientMarker(answer: string): {
   text: string;
   insufficient: boolean;

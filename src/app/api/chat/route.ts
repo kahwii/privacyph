@@ -7,6 +7,7 @@ import {
   smallTalkReply,
   sourcesOnlyAnswer,
   stripInsufficientMarker,
+  citesSomething,
 } from '@/lib/prompt';
 import { generate } from '@/lib/llm';
 import { serviceClient } from '@/lib/supabase';
@@ -78,8 +79,14 @@ export async function POST(req: NextRequest) {
 
     // No citations on a non-answer: a Sources list under "I do not have
     // this" reads as support for a claim that was never made.
+    //
+    // Three conditions, because the first two can be missed. The floor and the
+    // marker are what the system intended; citesSomething is what the model
+    // actually produced, and it is the only one of the three that cannot be
+    // forgotten by a model having an off day. See the note on citesSomething.
+    const ungrounded = !citesSomething(answer);
     const citations =
-      refused || insufficient
+      refused || insufficient || ungrounded
         ? []
         : chunks.slice(0, 4).map((c) => ({
             shortCode: c.short_code,
@@ -103,7 +110,7 @@ export async function POST(req: NextRequest) {
       answer,
       citations,
       refused,
-      insufficient,
+      insufficient: insufficient || ungrounded,
       degraded,
       confidence: Number(topSimilarity.toFixed(3)),
     });

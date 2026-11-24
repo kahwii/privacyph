@@ -204,10 +204,30 @@ a legal question the source text is arguably the better answer anyway.
 `superseded_by` set, filtered out of retrieval but preserved in the record.
 Deleting them would throw away the audit trail.
 
-**No citations behind a refusal.** An honest refusal and a confident answer are
-both just text to the server. Attaching a Sources list to "I do not have this"
-implies those sources support something. The model emits an explicit marker,
-and the server suppresses citations when it sees it.
+**No citations behind a refusal — checked three ways, because two of them can
+be missed.** An honest refusal and a confident answer are both just text to the
+server. Attaching a Sources list to "I do not have this" implies those sources
+support something. The retrieval floor catches the case where nothing came
+back; an `INSUFFICIENT_CONTEXT` marker catches the case the model declares.
+
+Neither caught the real one. Asked for the maximum GDPR fine in Germany, the
+model declined correctly and simply did not write the marker, and four
+Philippine issuances were about to be rendered under a refusal about German
+law. The marker is an instruction the model has to remember, and the benchmark
+had been counting compliance with that instruction while calling it refusal
+accuracy.
+
+So the third check reads what the model actually wrote: an answer containing no
+citation is not grounded, whatever prefix it carries. Rule 2 requires a
+citation for every substantive statement, which makes this the system's own
+definition rather than a heuristic bolted on. It is the only one of the three
+that cannot be forgotten.
+
+It costs something. A supersession answer — *"the 2020 CCTV advisory was
+replaced by NPC Circular No. 2024-02"* — is correct and cites nothing, because
+it is answered from the repealed-issuances list rather than from a chunk, so it
+loses its sources panel too. Showing nothing is the smaller error, and the
+trade is recorded rather than special-cased away.
 
 ## Stack
 
@@ -276,17 +296,12 @@ issuances are retained with their replacements recorded.
   against the manual scores before it could be trusted.
 - Free-tier generation is frequently rate-limited; the degradation path exists
   because of it.
-- **Refusal and the refusal marker are two different things, and the second
-  one fails.** Asked *"What is the maximum GDPR fine for a company in
-  Germany?"*, the model declined — *"I do not have the answer to your
-  question"* — but did not emit the `INSUFFICIENT_CONTEXT` marker that rule 8
-  requires. The answer was safe; the protocol was not. In the app that marker
-  is what suppresses the citation list, so a refusal without it renders four
-  sources underneath, implying they support a conclusion that was never
-  reached. The benchmark counts the marker, so what it reports as "refusal
-  accuracy" is really marker compliance; it now says so, and prints any
-  unmarked control for a human to read instead of scoring it automatically.
-  Open issue.
+- **The refusal marker is unreliable, and the benchmark measures the marker
+  rather than the refusal.** The model declines correctly far more often than
+  it remembers to write `INSUFFICIENT_CONTEXT`. The app no longer depends on
+  it (see above), but the benchmark still counts it, so the figure reported as
+  refusal accuracy is really marker compliance. It now says so, and prints any
+  unmarked control for a human to read rather than scoring it automatically.
 - Not built for real client data. RLS confines users to their own rows, but
   this has had no security review.
 
