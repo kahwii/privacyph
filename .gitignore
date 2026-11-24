@@ -4,9 +4,9 @@ out/
 next-env.d.ts
 *.tsbuildinfo
 
-# Secrets. .env.example is committed; .env.local never is.
-.env
-.env.local
+# Secrets. .env.example is committed; nothing else matching .env* is.
+.env*
+!.env.example
 *.log
 .DS_Store
 

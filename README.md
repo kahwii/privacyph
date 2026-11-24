@@ -9,6 +9,8 @@ Built because SMEs here carry real obligations under RA 10173 but rarely have
 a data privacy lawyer or a full-time DPO, and the questions they ask are
 repetitive and answerable from public text.
 
+**[privacyph.vercel.app](https://privacyph.vercel.app)**
+
 > Corpus verified: 23 November 2026 · 25 issuances · 548 indexed sections
 
 ---
@@ -179,10 +181,22 @@ issuances are retained with their replacements recorded.
       all six tables.
 - [ ] Confirm `.env.local` is untracked: `git status --porcelain .env.local`
       should print nothing.
-- [ ] Set the same environment variables in Vercel; none of the secret ones
+- [x] Set the same environment variables in Vercel; none of the secret ones
       prefixed `NEXT_PUBLIC_`.
+- [ ] Give production its own credentials. Deployed with the development keys
+      to ship; separate keys mean a leak in one place does not reach the other.
 - [ ] Free Supabase projects pause after a week of inactivity. Decide how the
       demo stays awake, or note the wake-up delay in the project description.
+
+## Deployment
+
+Pushing to `main` deploys. Environment variables live in Vercel project
+settings and are not read from the repository.
+
+`DEV_DNS_SERVERS` is local only and must never be set in Vercel. It exists
+because the machine this was built on has a virtual network adapter whose DNS
+resolver answers nothing, and Windows prefers it; the override makes Node
+resolve through 1.1.1.1 instead. A deployment has no such problem.
 
 ## Roadmap
 
