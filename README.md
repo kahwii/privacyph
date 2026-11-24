@@ -45,7 +45,12 @@ scored per dimension with a prioritised gap list.
 
 Measured by `npm run eval` over `eval/questions.csv` — 39 questions, 33
 scorable and 6 deliberately out of corpus. Raw per-question output is committed
-under `eval/results/`.
+under `eval/results/`, so every figure below can be recomputed from a file in
+this repository rather than taken on trust: retrieval and language figures from
+`2026-11-24T14-23-33-070Z.csv`, marker compliance from
+`2026-11-24T13-57-37-995Z.csv` — the most recent run in which all six controls
+generated an answer, since a control whose generation never ran cannot be
+scored either way.
 
 | Metric | Result | |
 |---|---|---|
@@ -54,7 +59,7 @@ under `eval/results/`.
 | Multi-hop coverage | **72.7%** | 8/11 — both issuances found where two are needed |
 | Marker compliance | **100%** | 6/6 out-of-corpus questions declined *with* the refusal marker — see Limitations |
 | English / Tagalog | 92.6% / 100% | 25/27 and 6/6 |
-| Unit tests | 19 passing | breach logic and chunker |
+| Unit tests | 25 passing | breach logic, chunker, citation grounding |
 
 The questions do not name the issuance they are looking for. "Do we have to
 tell the NPC anything about the systems we run?" rather than "which circular
