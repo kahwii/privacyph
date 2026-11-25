@@ -57,11 +57,19 @@ function parseCsv(text) {
  * "RULE V, SECTION 18 (A)", "RULE V, Section 18" and "Sec. 18" all name the
  * same section. The model cites the shape it saw in the context, which is not
  * always the shape the chunker stored.
+ *
+ * What a parenthetical must NOT do is disappear. An earlier version stripped
+ * it, so SECTION 5 (1) and SECTION 5 (2) collapsed to one key, the second
+ * overwrote the first in the map, and every citation to a subsection was
+ * answered with the text of a different subsection -- NPC-2024-02 Sec. 5(1)
+ * on camera placement was shown as Sec. 5(2) on encryption. A sheet that
+ * quietly shows the wrong provision beside a claim is worse than no sheet at
+ * all: it makes a correct answer look fabricated. Flatten the parenthetical
+ * into the key instead of deleting it.
  */
 const key = (s) =>
   s
     .toUpperCase()
-    .replace(/\([^)]*\)/g, ' ')
     .replace(/\bSECS?\b\.?/g, 'SECTION')
     .replace(/[^A-Z0-9]+/g, ' ')
     .trim();
@@ -78,7 +86,11 @@ for (const doc of manifest) {
       heading: c.heading,
       content: c.content.replace(/\s+/g, ' ').trim(),
     };
-    byKey.set(key(c.sectionLabel), entry);
+    // Never overwrite: a collision means two sections share a normalised key,
+    // and the first is as likely to be the right one as the second. Keep the
+    // first and let the ambiguity surface as "could not locate" rather than
+    // resolving it by map-insertion order.
+    if (!byKey.has(key(c.sectionLabel))) byKey.set(key(c.sectionLabel), entry);
     // Also reachable by heading alone: the model sometimes cites one, as it
     // did with NPC-16-03's "Summary" table.
     if (c.heading && !byKey.has(key(c.heading))) byKey.set(key(c.heading), entry);

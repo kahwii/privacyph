@@ -217,6 +217,46 @@ ANSWER:
     original consent given is no longer valid. A PIC shall obtain new
     consent in accordance with the…
 
+  [NPC-2023-04, SECTION 21(A)]
+    SECTION 21 — Period for validity of consent
+    Period for validity of consent. — Generally, consent remains valid
+    as long as the information communicated in relation to the scope,
+    purpose, nature, and extent of the processing remains and still
+    holds true. A. If the scope, purpose, nature, and extent of the
+    processing involved changes or evolves considerably, then the
+    original consent given is no longer valid. A PIC shall obtain new
+    consent in accordance with the…
+
+  [NPC-2023-04, SECTION 21(B)]
+    SECTION 21 — Period for validity of consent
+    Period for validity of consent. — Generally, consent remains valid
+    as long as the information communicated in relation to the scope,
+    purpose, nature, and extent of the processing remains and still
+    holds true. A. If the scope, purpose, nature, and extent of the
+    processing involved changes or evolves considerably, then the
+    original consent given is no longer valid. A PIC shall obtain new
+    consent in accordance with the…
+
+  [NPC-2023-04, SECTION 21(E)]
+    SECTION 21 — Period for validity of consent
+    Period for validity of consent. — Generally, consent remains valid
+    as long as the information communicated in relation to the scope,
+    purpose, nature, and extent of the processing remains and still
+    holds true. A. If the scope, purpose, nature, and extent of the
+    processing involved changes or evolves considerably, then the
+    original consent given is no longer valid. A PIC shall obtain new
+    consent in accordance with the…
+
+  [NPC-2023-04, SECTION 21(D)]
+    SECTION 21 — Period for validity of consent
+    Period for validity of consent. — Generally, consent remains valid
+    as long as the information communicated in relation to the scope,
+    purpose, nature, and extent of the processing remains and still
+    holds true. A. If the scope, purpose, nature, and extent of the
+    processing involved changes or evolves considerably, then the
+    original consent given is no longer valid. A PIC shall obtain new
+    consent in accordance with the…
+
 SCORE: ___
 
 
@@ -320,14 +360,14 @@ ANSWER:
     DPA, its IRR, its…
 
   [NPC-2022-04, Preamble (1)]
-    Preamble (2)
-    WHEREAS, Sections 46 and 47, Rule XI of the IRR also require the
-    effective and efficient monitoring of a Data Processing Systems that
-    are likely to pose a risk to the rights and freedoms of data
-    subjects including those that involve information likely to affect
-    national security, public safety, public order, or public health or
-    information required by applicable laws or rules to be confidential;
-    vulnerable data subje…
+    Preamble (1)
+    Republic of the Philippines NATIONAL PRIVACY COMMISSION Floor,
+    Philippine International Convention Center, Vicente Sotto Avenue,
+    Pasay City, Metro Manila 1307 NPC Circular No. 2022-04 DATE : 05
+    December 2022 SUBJECT : REGISTRATION OF PERSONAL DATA PROCESSING
+    SYSTEM, NOTIFICATION REGARDING AUTOMATED DECISION-MAKING OR
+    PROFILING, DESIGNATION OF DATA PROTECTION OFFICER, AND THE NATIONAL
+    PRIVACY COMMISSION SEAL OF REGIST…
 
 SCORE: ___
 
@@ -420,14 +460,14 @@ ANSWER:
     personal information process…
 
   [IRR-10173, RULE VI, Section 26 (1)]
-    RULE VI, Section 26 (2) — Organizational Security Measures
-    e. Processing of Personal Data. Any natural or juridical person or
-    other body involved in the processing of personal data shall
-    develop, implement and review: 1. A procedure for the collection of
-    personal data, including procedures for obtaining consent, when
-    applicable; 2. Procedures that limit the processing of data, to
-    ensure that it is only to the extent necessary for the declared,
-    specified, and legitimate purpo…
+    RULE VI, Section 26 (1) — Organizational Security Measures
+    Organizational Security Measures. Where appropriate, personal
+    information controllers and personal information processors shall
+    comply with the following guidelines for organizational security: a.
+    Compliance Officers. Any natural or juridical person or other body
+    involved in the processing of personal data shall designate an
+    individual or individuals who shall function as data protection
+    officer, compliance officer o…
 
   [IRR-10173, RULE VI, Section 28]
     RULE VI, Section 28 — Guidelines for Technical Security Measures
@@ -506,6 +546,16 @@ ANSWER:
   CITED TEXT --------------------------------------------------------------
 
   [NPC-2024-02, Sec. 5(1)]
+    SECTION 5 (1) — Safeguards
+    Safeguards. — PICs and its PIPs shall implement reasonable and
+    appropriate security measures, including privacy by design
+    principles, to protect personal data processed against accidental,
+    unlawful, or unauthorized use, to minimize privacy intrusion, and to
+    comply with the requirements under the DPA, its IRR, and relevant
+    issuances of the NPC. A. Policies. PICs and its PIPs shall establish
+    policies that govern the op…
+
+  [NPC-2024-02, Sec. 5(2)]
     SECTION 5 (2) — Safeguards
     3. Storage. Footage recorded by CCTV systems shall be stored in a
     secure manner, whereby its confidentiality, integrity, and
@@ -550,14 +600,14 @@ ANSWER:
   CITED TEXT --------------------------------------------------------------
 
   [NPC-2024-02, SECTION 7 (1)]
-    SECTION 7 (2) — Third-party access request
-    the media to prove that the requested CCTV footage shall not be used
-    for amusement or entertainment purposes. b. Law enforcement agencies
-    may release CCTV footage to the media on a case- to-case basis
-    taking into account the lawful basis for processing of personal data
-    under Sections 12 and 13 of the DPA, or processing under a special
-    case, considering the requirements of public order and safety,
-    verification or conf…
+    SECTION 7 (1) — Third-party access request
+    Third-party access request. — A third-party access request is a
+    request to access CCTV footage made by a person other than the data
+    subject involved in the footage or the latter’s authorized
+    representative. If a data subject involved in the footage or their
+    authorized representative requests access to CCTV footage, the
+    presence of another person’s image within the CCTV footage does not
+    automatically classify such req…
 
 SCORE: ___
 
@@ -603,6 +653,26 @@ ANSWER:
     regular monitoring and evaluation…
 
   [NPC-16-03, RULE V, SECTION 18 (A)]
+    RULE V, SECTION 18 — Notification of Data Subjects
+    Notification of Data Subjects. The personal information controller
+    shall notify the data subjects affected by a personal data breach,
+    subject to the following procedures: A. When should notification be
+    done. The data subjects shall be notified within seventy-two (72)
+    hours upon knowledge of or reasonable belief by the personal
+    information controller or personal information processor that a
+    personal data breach has oc…
+
+  [NPC-16-03, RULE V, SECTION 18 (C)]
+    RULE V, SECTION 18 — Notification of Data Subjects
+    Notification of Data Subjects. The personal information controller
+    shall notify the data subjects affected by a personal data breach,
+    subject to the following procedures: A. When should notification be
+    done. The data subjects shall be notified within seventy-two (72)
+    hours upon knowledge of or reasonable belief by the personal
+    information controller or personal information processor that a
+    personal data breach has oc…
+
+  [NPC-16-03, RULE V, SECTION 18 (D)]
     RULE V, SECTION 18 — Notification of Data Subjects
     Notification of Data Subjects. The personal information controller
     shall notify the data subjects affected by a personal data breach,
@@ -717,34 +787,44 @@ ANSWER:
   CITED TEXT --------------------------------------------------------------
 
   [NPC-ADV-AI-2024, SECTION 2 (1)]
-    SECTION 2 (2) — Application of the DPA
-    b. PICs shall also be responsible for regularly monitoring the
-    proper implementation and effectiveness of these governance
-    mechanisms. C. Fairness. PICs shall ensure that personal data is
-    processed in a manner that is neither manipulative nor unduly
-    oppressive to data subjects. As such, PICs shall implement
-    mechanisms to identify and monitor biases in the AI systems and to
-    limit such biases and their impact on the da…
+    SECTION 2 (1) — Application of the DPA
+    Application of the DPA. — The obligations of Personal Information
+    Controllers (PIC), and their Personal Information Processors (PIP),
+    under the DPA, its IRR, and the issuances of the Commission,
+    including adhering to the general privacy principles, upholding the
+    rights of the data subjects, determining the appropriate lawful
+    basis for processing, and implementing security measures, apply
+    insofar as AI systems involve…
 
   [NPC-ADV-AI-2024, SECTION 2 (1) A]
-    SECTION 2 (2) — Application of the DPA
-    b. PICs shall also be responsible for regularly monitoring the
-    proper implementation and effectiveness of these governance
-    mechanisms. C. Fairness. PICs shall ensure that personal data is
-    processed in a manner that is neither manipulative nor unduly
-    oppressive to data subjects. As such, PICs shall implement
-    mechanisms to identify and monitor biases in the AI systems and to
-    limit such biases and their impact on the da…
+    SECTION 2 (1) — Application of the DPA
+    Application of the DPA. — The obligations of Personal Information
+    Controllers (PIC), and their Personal Information Processors (PIP),
+    under the DPA, its IRR, and the issuances of the Commission,
+    including adhering to the general privacy principles, upholding the
+    rights of the data subjects, determining the appropriate lawful
+    basis for processing, and implementing security measures, apply
+    insofar as AI systems involve…
 
   [NPC-ADV-AI-2024, SECTION 2 (1) B]
-    SECTION 2 (2) — Application of the DPA
-    b. PICs shall also be responsible for regularly monitoring the
-    proper implementation and effectiveness of these governance
-    mechanisms. C. Fairness. PICs shall ensure that personal data is
-    processed in a manner that is neither manipulative nor unduly
-    oppressive to data subjects. As such, PICs shall implement
-    mechanisms to identify and monitor biases in the AI systems and to
-    limit such biases and their impact on the da…
+    SECTION 2 (1) — Application of the DPA
+    Application of the DPA. — The obligations of Personal Information
+    Controllers (PIC), and their Personal Information Processors (PIP),
+    under the DPA, its IRR, and the issuances of the Commission,
+    including adhering to the general privacy principles, upholding the
+    rights of the data subjects, determining the appropriate lawful
+    basis for processing, and implementing security measures, apply
+    insofar as AI systems involve…
+
+  [NPC-ADV-AI-2024, SECTION 2 (1) B(2)]
+    SECTION 2 (1) — Application of the DPA
+    Application of the DPA. — The obligations of Personal Information
+    Controllers (PIC), and their Personal Information Processors (PIP),
+    under the DPA, its IRR, and the issuances of the Commission,
+    including adhering to the general privacy principles, upholding the
+    rights of the data subjects, determining the appropriate lawful
+    basis for processing, and implementing security measures, apply
+    insofar as AI systems involve…
 
 SCORE: ___
 
@@ -854,6 +934,36 @@ ANSWER:
   CITED TEXT --------------------------------------------------------------
 
   [RA-10173, CHAPTER I, SEC. 6]
+    CHAPTER I, SEC. 6 — Extraterritorial Application
+    Extraterritorial Application. – This Act applies to an act done or
+    practice engaged in and outside of the Philippines by an entity if:
+    (a) The act, practice or processing relates to personal information
+    about a Philippine citizen or a resident; (b) The entity has a link
+    with the Philippines, and the entity is processing personal
+    information in the Philippines or even if the processing is outside
+    the Philippines as lo…
+
+  [RA-10173, CHAPTER I, SEC. 6(a)]
+    CHAPTER I, SEC. 6 — Extraterritorial Application
+    Extraterritorial Application. – This Act applies to an act done or
+    practice engaged in and outside of the Philippines by an entity if:
+    (a) The act, practice or processing relates to personal information
+    about a Philippine citizen or a resident; (b) The entity has a link
+    with the Philippines, and the entity is processing personal
+    information in the Philippines or even if the processing is outside
+    the Philippines as lo…
+
+  [RA-10173, CHAPTER I, SEC. 6(b)]
+    CHAPTER I, SEC. 6 — Extraterritorial Application
+    Extraterritorial Application. – This Act applies to an act done or
+    practice engaged in and outside of the Philippines by an entity if:
+    (a) The act, practice or processing relates to personal information
+    about a Philippine citizen or a resident; (b) The entity has a link
+    with the Philippines, and the entity is processing personal
+    information in the Philippines or even if the processing is outside
+    the Philippines as lo…
+
+  [RA-10173, CHAPTER I, SEC. 6(c)]
     CHAPTER I, SEC. 6 — Extraterritorial Application
     Extraterritorial Application. – This Act applies to an act done or
     practice engaged in and outside of the Philippines by an entity if:
