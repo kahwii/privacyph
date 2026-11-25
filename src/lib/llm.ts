@@ -184,7 +184,8 @@ async function generateNative(
   model: string,
   system: string,
   user: string,
-  temperature: number
+  temperature: number,
+  tries: number
 ): Promise<string> {
   const json = await post(
     `${GEMINI_BASE_URL}/models/${model}:generateContent`,
@@ -194,7 +195,7 @@ async function generateNative(
       generationConfig: { temperature },
     },
     { 'x-goog-api-key': API_KEY },
-    2,
+    tries,
     PER_CALL_TIMEOUT_MS
   );
 
@@ -220,6 +221,8 @@ async function generateCompat(
   system: string,
   user: string,
   temperature: number
+,
+  tries: number
 ): Promise<string> {
   const json = await post(
     `${CHAT_BASE_URL}/chat/completions`,
@@ -232,7 +235,7 @@ async function generateCompat(
       ],
     },
     { Authorization: `Bearer ${API_KEY}` },
-    2,
+    tries,
     PER_CALL_TIMEOUT_MS
   );
 
@@ -261,6 +264,14 @@ export async function generate(
     .filter(Boolean);
 
   const call = PROVIDER === 'gemini' ? generateNative : generateCompat;
+
+  // Breadth beats depth once the chain is wide. A 503 says this model is busy,
+  // not that the request is bad, so the next model is a better move than the
+  // same one again -- and with six models, two tries each would spend the
+  // budget re-asking busy models instead of reaching fresh ones. With a short
+  // chain there is nowhere else to go, so retrying is all there is.
+  const triesPerModel = models.length > 3 ? 1 : models.length > 1 ? 2 : 5;
+
   const deadline = Date.now() + GENERATION_BUDGET_MS;
   const failures: string[] = [];
 
@@ -271,7 +282,7 @@ export async function generate(
     }
 
     try {
-      const text = await call(model, system, user, temperature);
+      const text = await call(model, system, user, temperature, triesPerModel);
       if (failures.length) {
         console.warn(`[llm] ${model} answered after: ${failures.join(' | ')}`);
       }
