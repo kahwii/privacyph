@@ -1,0 +1,26 @@
+[
+  "We were breached yesterday and 300 customer records were exposed. What do we have to do?",
+  "Do we always need consent to process personal data?",
+  "We have CCTV in the office. What are the requirements?",
+  "Do we need to register our data processing system with the NPC?",
+
+  "How many hours do we have to notify the NPC about a data breach?",
+  "Our payment processor was breached, not us. Are we the one who has to report it?",
+  "What has to be in the breach notification we send?",
+  "Is consent we collected five years ago still good?",
+  "We want to send promos by SMS to customers who bought from us before. Do we need consent?",
+  "A customer asked us to delete everything we hold on them. Do we have to?",
+  "Do we need a Data Protection Officer if we only have eight employees?",
+  "What security measures are we actually required to have in place?",
+  "Police have asked us for CCTV footage of an incident. What governs that?",
+  "We share customer data with a partner company abroad. What agreement do we need?",
+  "How much can we be fined if we get this wrong?",
+  "Does the law still apply to us if our customers are all overseas?",
+  "Is the 2020 NPC advisory on CCTV still in force?",
+  "We are using an AI tool that reads customer emails to draft replies. Does privacy law touch that?",
+
+  "Ilang oras ang deadline para sabihan ang mga customer na naapektuhan ng data breach?",
+  "Kailangan ba ng consent bago kami mag-text ng promo sa mga customer?",
+  "May CCTV kami sa labas ng tindahan. May dapat ba kaming ilagay na paalala?",
+  "Magkano ang multa kapag hindi kami nag-register sa NPC?"
+]

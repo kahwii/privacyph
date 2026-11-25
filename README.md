@@ -64,7 +64,7 @@ scored either way.
 | Marker compliance | **100%** | 6/6 out-of-corpus questions declined *with* the refusal marker — see Limitations |
 | English / Tagalog | 92.6% / 100% | 25/27 and 6/6 |
 | Answer quality | 4.50 / 5 | 16 answers, scored against the cited provisions — see caveat below |
-| Unit tests | 36 passing | breach logic, chunker, citation grounding, reranking, quota |
+| Unit tests | 43 passing | breach logic, chunker, citation grounding, reranking, quota |
 
 The questions do not name the issuance they are looking for. "Do we have to
 tell the NPC anything about the systems we run?" rather than "which circular
@@ -239,6 +239,24 @@ now scores the two languages separately so a regression would show.
 
 ## Design decisions worth defending
 
+**Answers are cached, and failures are not.** Retrieval is ours and has never
+failed under measurement; generation is rented, and on a free tier Google
+sheds it first when the models are busy. On 25 November 2026 six models, swept
+repeatedly for forty seconds, all returned 503 — and nothing in this
+repository can fix that.
+
+What it can do is make sure the questions a visitor actually asks have already
+been answered. `answer_cache` keys on the question, the system-prompt version
+and the retrieval mode, so changing the prompt or switching to hybrid misses
+every existing row rather than serving answers written under rules no longer
+in force. `npm run warm-cache` fills it from `docs/warm-questions.json`,
+starting with the four landing-page starters — the questions the opening
+screen invites you to click.
+
+A degraded answer is never cached. Storing the failure would make it
+permanent, which is the opposite of the point, so the warming script simply
+keeps asking until the model is reachable.
+
 **Section-aware chunking with a fallback strategy.** Fixed-size chunking cuts
 across section boundaries, which is particularly destructive on statutes: a
 question about the 72-hour notification window should retrieve one whole
@@ -315,7 +333,7 @@ npm run setup-env          # prompts for the three credentials
 ```
 
 1. Create a Supabase project. Run `supabase/schema.sql`, then
-   `supabase/grants.sql`, in the SQL Editor. `supabase/hybrid.sql` is optional
+   `supabase/grants.sql`, then `supabase/cache.sql`, in the SQL Editor. `supabase/hybrid.sql` is optional
    and only needed to reproduce the hybrid comparison above; the app does not
    use it by default.
 2. `npm run fetch-corpus` — downloads 24 of the 25 PDFs. RA 10173 is served
@@ -329,6 +347,7 @@ Useful while working:
 npm test                                           # 19 unit tests
 npm run eval                                       # retrieval benchmark (dense)
 npm run eval -- --mode=hybrid                      # the same benchmark, hybrid
+npm run warm-cache                                 # fill the answer cache
 npm run check-citations                            # every citation vs the PDFs
 node scripts/inspect-chunks.mjs                    # chunking report, no API cost
 node --env-file=.env.local scripts/list-models.mjs # what the key can actually use

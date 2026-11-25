@@ -11,6 +11,7 @@ import {
 } from '@/lib/prompt';
 import { generate } from '@/lib/llm';
 import { serviceClient } from '@/lib/supabase';
+import { lookup as cacheLookup, store as cacheStore } from '@/lib/cache';
 
 const CONFIDENCE_FLOOR = 0.45;
 
@@ -42,6 +43,24 @@ export async function POST(req: NextRequest) {
       citations: [],
       refused: false,
       smallTalk: true,
+    });
+  }
+
+  // A cached answer skips retrieval and generation entirely. It exists because
+  // generation is the rented half of this system: when Google sheds free-tier
+  // load, every model returns 503 and nothing here can change that. A visitor
+  // following a link from a CV asks one of a small, predictable set of
+  // questions, and those have been answered already.
+  const cached = await cacheLookup(question);
+  if (cached) {
+    return NextResponse.json({
+      answer: cached.answer,
+      citations: cached.citations,
+      refused: false,
+      insufficient: cached.insufficient,
+      degraded: false,
+      cached: true,
+      confidence: cached.confidence ?? undefined,
     });
   }
 
@@ -95,6 +114,19 @@ export async function POST(req: NextRequest) {
             url: c.source_url,
             similarity: Number(c.similarity.toFixed(3)),
           }));
+
+    // Only a real generated answer is worth keeping. A degraded answer is the
+    // failure this cache exists to survive, and storing it would make that
+    // failure permanent; a floor refusal never reached the model and costs
+    // nothing to recompute.
+    if (!degraded && !refused) {
+      await cacheStore(question, {
+        answer,
+        citations,
+        confidence: Number(topSimilarity.toFixed(3)),
+        insufficient: insufficient || ungrounded,
+      });
+    }
 
     await log({
       conversationId,
