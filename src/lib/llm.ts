@@ -275,22 +275,41 @@ export async function generate(
   const deadline = Date.now() + GENERATION_BUDGET_MS;
   const failures: string[] = [];
 
-  for (const model of models) {
-    if (Date.now() > deadline) {
-      failures.push('budget exhausted before trying ' + model);
-      break;
+  // Sweep every model, then wait and sweep again while the budget lasts.
+  //
+  // Breadth first, because a 503 means that model is busy and the next one
+  // might not be. But breadth alone finishes too fast to be any use: a shed
+  // request comes back in about two milliseconds, so six models refuse in
+  // under a second and the 45-second budget goes unspent. Waiting between
+  // sweeps is what actually buys a chance, since the overload that caused
+  // this is measured in seconds.
+  //
+  // The pause grows 2s, 4s, 8s so a long outage is not hammered, and every
+  // sweep re-checks the deadline rather than trusting the arithmetic.
+  for (let sweep = 0; Date.now() < deadline; sweep++) {
+    if (sweep > 0) {
+      const pause = Math.min(2000 * 2 ** (sweep - 1), 8000);
+      if (Date.now() + pause >= deadline) break;
+      await sleep(pause);
     }
 
-    try {
-      const text = await call(model, system, user, temperature, triesPerModel);
-      if (failures.length) {
-        console.warn(`[llm] ${model} answered after: ${failures.join(' | ')}`);
+    for (const model of models) {
+      if (Date.now() >= deadline) break;
+
+      try {
+        const text = await call(model, system, user, temperature, triesPerModel);
+        if (failures.length) {
+          console.warn(`[llm] ${model} answered after ${failures.length} failure(s): ${failures.slice(0, 3).join(' | ')}`);
+        }
+        return text;
+      } catch (err) {
+        failures.push(`${model} — ${(err as Error).message.replace(/\s+/g, ' ').slice(0, 160)}`);
       }
-      return text;
-    } catch (err) {
-      failures.push(`${model} — ${(err as Error).message.replace(/\s+/g, ' ').slice(0, 160)}`);
     }
   }
 
-  throw new Error('every generation model failed:\n  ' + failures.join('\n  '));
+  throw new Error(
+    `every generation model failed ${failures.length} time(s) in ${Math.round(GENERATION_BUDGET_MS / 1000)}s:\n  ` +
+      failures.slice(-models.length).join('\n  ')
+  );
 }
