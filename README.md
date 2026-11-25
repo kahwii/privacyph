@@ -300,7 +300,10 @@ issuances are retained with their replacements recorded.
 - Answer correctness is scored by hand. An LLM judge would need validating
   against the manual scores before it could be trusted.
 - Free-tier generation is frequently rate-limited; the degradation path exists
-  because of it.
+  because of it. The limit is a daily one, enforced per Google Cloud project,
+  so a benchmark run and the live site draw on the same allowance unless they
+  are given separate projects — see Before deploying. When it is exhausted
+  every answer is served as source text until it resets at midnight Pacific.
 - **The refusal marker is unreliable, and the benchmark measures the marker
   rather than the refusal.** The model declines correctly far more often than
   it remembers to write `INSUFFICIENT_CONTEXT`. The app no longer depends on
@@ -323,8 +326,17 @@ issuances are retained with their replacements recorded.
       should print nothing.
 - [x] Set the same environment variables in Vercel; none of the secret ones
       prefixed `NEXT_PUBLIC_`.
-- [ ] Give production its own credentials. Deployed with the development keys
-      to ship; separate keys mean a leak in one place does not reach the other.
+- [ ] **Give production its own Google Cloud project, not just its own key.**
+      Gemini rate limits are enforced per project, so a second key in the same
+      project shares one daily quota with everything else — and a benchmark
+      run is roughly a hundred generation calls. Three eval runs in one
+      evening exhausted the free tier, and every visitor to the live site got
+      the degraded source-text answer until the quota reset at midnight
+      Pacific. Create a separate project, use its key in Vercel only, and keep
+      the development key for `npm run eval`. A separate key is still worth
+      having for the security reason — a leak in one place does not reach the
+      other — but it does not solve this.
+- [ ] Give Supabase production its own key for the same security reason.
 - [ ] Free Supabase projects pause after a week of inactivity. Decide how the
       demo stays awake, or note the wake-up delay in the project description.
 
