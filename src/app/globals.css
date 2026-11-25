@@ -510,3 +510,24 @@ pre.draft {
   vertical-align: 1px;
 }
 .ref + * { margin-left: -1px; }
+
+/* Offered only on a degraded answer: the generation models returned 503 and
+   that is transient, so one click is more use than a retyped question. */
+.meta .retry {
+  margin-left: 0.6rem;
+  padding: 0.1rem 0.55rem;
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--authority);
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.meta .retry:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--authority) 12%, transparent);
+}
+.meta .retry:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

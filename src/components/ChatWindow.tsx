@@ -115,12 +115,51 @@ export default function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  // Index of the assistant message being re-asked, or null. A 503 from the
+  // generation models is transient -- Google sheds free-tier load when the
+  // models are busy -- so the useful thing to offer is one click, not a
+  // retyped question.
+  const [retrying, setRetrying] = useState<number | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (messages.length) endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages, loading]);
+
+  async function request(question: string): Promise<Message> {
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+      return {
+        role: 'assistant',
+        content:
+          data.answer ?? data.error ?? 'No answer came back. The server log will say why.',
+        citations: data.citations,
+        confidence: data.confidence,
+        refused: data.refused,
+        insufficient: data.insufficient,
+        degraded: data.degraded,
+      };
+    } catch {
+      return {
+        role: 'assistant',
+        content: 'Could not reach the server. Check your connection and try again.',
+      };
+    }
+  }
+
+  async function retry(question: string, index: number) {
+    if (retrying !== null || loading) return;
+    setRetrying(index);
+    const answer = await request(question);
+    setMessages((m) => m.map((msg, i) => (i === index ? answer : msg)));
+    setRetrying(null);
+  }
 
   async function ask(question: string) {
     if (!question.trim() || loading) return;
@@ -129,47 +168,16 @@ export default function ChatWindow() {
     setInput('');
     setLoading(true);
 
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question }),
-      });
-      const data = await res.json();
-
-      setMessages((m) => [
-        ...m,
-        {
-          role: 'assistant',
-          content:
-            data.answer ??
-            data.error ??
-            'No answer came back. The dev server log will say why.',
-          citations: data.citations,
-          confidence: data.confidence,
-          refused: data.refused,
-          insufficient: data.insufficient,
-          degraded: data.degraded,
-        },
-      ]);
-    } catch {
-      setMessages((m) => [
-        ...m,
-        {
-          role: 'assistant',
-          content: 'Could not reach the server. Check that the dev server is still running.',
-        },
-      ]);
-    } finally {
-      setLoading(false);
-      boxRef.current?.focus();
-    }
+    const answer = await request(question);
+    setMessages((m) => [...m, answer]);
+    setLoading(false);
+    boxRef.current?.focus();
   }
 
-  const turns: { question: string; answer?: Message }[] = [];
+  const turns: { question: string; answer?: Message; answerIndex: number }[] = [];
   for (let i = 0; i < messages.length; i++) {
     if (messages[i].role === 'user') {
-      turns.push({ question: messages[i].content, answer: messages[i + 1] });
+      turns.push({ question: messages[i].content, answer: messages[i + 1], answerIndex: i + 1 });
     }
   }
 
@@ -222,7 +230,17 @@ export default function ChatWindow() {
                   retrieval <b>{t.answer.confidence}</b>
                   {t.answer.refused && !t.answer.insufficient && ' · below floor, nothing sent to the model'}
                   {t.answer.insufficient && ' · retrieved, no answer found in it'}
-                  {t.answer.degraded && ' · model unavailable, showing source text'}
+                  {t.answer.degraded && ' · summariser busy, showing source text'}
+                  {t.answer.degraded && (
+                    <button
+                      type="button"
+                      className="retry"
+                      onClick={() => retry(t.question, t.answerIndex)}
+                      disabled={retrying !== null || loading}
+                    >
+                      {retrying === t.answerIndex ? 'Trying…' : 'Try again'}
+                    </button>
+                  )}
                   <span className="vote">
                     <button type="button" aria-label="This was useful">
                       Useful

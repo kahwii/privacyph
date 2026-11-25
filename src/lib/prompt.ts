@@ -113,11 +113,11 @@ export function sourcesOnlyAnswer(chunks: RetrievedChunk[]): string {
     .join('\n\n');
 
   return (
-    'The model is unavailable, so this is not summarised. The search did find ' +
-    'the provisions that govern your question — here are the openings, with ' +
-    'links to the full text in the margin.\n\n' +
+    'The summariser is busy right now, so this answer is not summarised. The ' +
+    'search still found the provisions that govern your question — here are ' +
+    'their openings, with links to the full text in the margin.\n\n' +
     body +
-    '\n\nAsk again shortly for a summarised answer.'
+    '\n\nThis usually clears within a minute. Try again for a summarised answer.'
   );
 }
 
