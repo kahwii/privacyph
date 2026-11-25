@@ -24,6 +24,10 @@ the search could not reach from one the model read and could not answer.*
 
 > Corpus verified: 23 November 2026 · 25 issuances · 548 indexed sections
 
+**Built with heavy use of an AI coding assistant.** Every figure below can be
+recomputed from a file committed to this repository, and where a judgement was
+made by the assistant rather than by me, it says so.
+
 ---
 
 ## What it does
@@ -59,7 +63,8 @@ scored either way.
 | Multi-hop coverage | **72.7%** | 8/11 — both issuances found where two are needed |
 | Marker compliance | **100%** | 6/6 out-of-corpus questions declined *with* the refusal marker — see Limitations |
 | English / Tagalog | 92.6% / 100% | 25/27 and 6/6 |
-| Unit tests | 25 passing | breach logic, chunker, citation grounding |
+| Answer quality | 4.50 / 5 | 16 answers, scored against the cited provisions — see caveat below |
+| Unit tests | 36 passing | breach logic, chunker, citation grounding, reranking, quota |
 
 The questions do not name the issuance they are looking for. "Do we have to
 tell the NPC anything about the systems we run?" rather than "which circular
@@ -128,6 +133,63 @@ What it does not establish is that those sections say what the answers claim.
 That is still scored by hand in `answer_score_1to5`. A clean run here narrows
 the question from *"is any of this made up?"* to *"is this reading correct?"*,
 which is the one a human can actually answer.
+
+### Answer quality, and who judged it
+
+Retrieval accuracy says the governing issuance came back. It says nothing
+about whether the answer read it correctly. That is scored by hand in
+`answer_score_1to5`, against the sheet `scripts/scoring-sheet.mjs` produces,
+which prints the text of each cited section underneath the claim citing it.
+
+| | |
+|---|---|
+| Answers scored | 16 |
+| Mean | **4.50** / 5 |
+| Distribution | nine 5s, six 4s, one 3 |
+| Correct refusals | 2, deliberately off the scale — see below |
+
+**These scores were assigned by the AI assistant that helped build the
+system, not by an independent reader.** That is a real weakness and it is
+stated here rather than buried: a model grading work it helped produce has an
+obvious interest in the result. Every score carries a `score_basis` naming the
+provision it was checked against, so the judgement is auditable rather than
+asserted — but auditable is not the same as independent, and the number should
+be read with that discount.
+
+Every 4 is the same shape: correct and grounded, with something missing. #2
+omits the 72-hour deadline. #17 answers a CCTV breach question without
+touching the CCTV circular it had retrieved. #20 covers data sharing but not
+the cross-border transfer the question asked about. #4 and #12 cite a summary
+table and a preamble where an operative section says the same thing. The one
+3, #9, frames the right of erasure entirely as consent withdrawal, which would
+mislead a reader whose lawful basis is contract.
+
+Two answers are refusals and are not scored 1-5 at all. A rubric written for
+answers cannot grade a refusal: "so hedged it is useless" and "correct to
+decline" are not the same verdict, and collapsing them would punish the
+behaviour this tool exists to have. They are recorded as correct refusals with
+their reasoning.
+
+### One of the benchmark's own questions is mis-keyed
+
+Scoring surfaced a defect in the benchmark rather than in the system. Question
+25 — *"We ask customers to present an ID before entering. Can we keep a
+photocopy?"* — is keyed to `NPC-2023-03`, Guidelines on Identification Cards.
+That circular's Section 1 scopes it to PICs that **issue** ID cards; it says
+nothing about collecting or copying a customer's ID. Searching all 25
+documents for photocopy, reproduction or ID collection returns nothing on
+point.
+
+So the corpus does not answer that question, the model was right to decline,
+and `retrieval_hit` counted it as a hit because the mis-keyed document was
+returned first. One of the 33 scorable questions is therefore measuring
+nothing, and the retrieval figures above include it. The fix is to rewrite or
+drop the question and re-run; that has not been done, so the numbers stand as
+measured with this known flaw rather than being quietly restated.
+
+It is worth noting how it was found. Not by the harness, which cannot tell a
+retrieved document from a relevant one — by reading an answer against the
+provision it cited.
 
 ### Hybrid retrieval was built, measured, and is not the default
 
@@ -297,8 +359,11 @@ issuances are retained with their replacements recorded.
   Congress across several sessions, and the NPC issues new circulars regularly.
 - The benchmark is 39 questions and self-authored. Written by the same person
   who built the retriever, which is a real limit on what it can prove.
-- Answer correctness is scored by hand. An LLM judge would need validating
-  against the manual scores before it could be trusted.
+- **Answer correctness was scored by the assistant that helped build the
+  system.** Each score names the provision it was checked against, so it can
+  be audited line by line, but it is not an independent judgement and should
+  be discounted accordingly. An independent reader scoring the same 16 answers
+  is the single cheapest improvement available to this benchmark.
 - Free-tier generation is frequently rate-limited; the degradation path exists
   because of it. The limit is a daily one, enforced per Google Cloud project,
   so a benchmark run and the live site draw on the same allowance unless they
