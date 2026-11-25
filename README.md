@@ -337,8 +337,13 @@ issuances are retained with their replacements recorded.
       having for the security reason — a leak in one place does not reach the
       other — but it does not solve this.
 - [ ] Give Supabase production its own key for the same security reason.
-- [ ] Free Supabase projects pause after a week of inactivity. Decide how the
-      demo stays awake, or note the wake-up delay in the project description.
+- [x] **Keep the database awake.** Free Supabase projects pause after a week
+      of too little activity, which for a portfolio project is the normal
+      state. `GET /api/health` reads one row and touches no language model;
+      `.github/workflows/keepalive.yml` calls it twice a week and fails loudly
+      if the site does not answer. The endpoint is `force-dynamic` — cached at
+      the edge it would report success without ever reaching the database,
+      keeping nothing awake and saying everything was fine.
 
 ## Deployment
 
