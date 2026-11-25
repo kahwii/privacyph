@@ -12,6 +12,7 @@
  */
 
 import { applyDevDnsOverride } from './dns';
+import { isDailyQuotaError } from './quota';
 
 // Runs once, when this module is first loaded, before any request goes out.
 applyDevDnsOverride();
@@ -64,7 +65,14 @@ async function post(
 
     lastError = `HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`;
 
-    const retryable = res.status === 429 || res.status >= 500;
+    // A 429 is two different failures wearing one status code. A per-minute
+    // rate limit clears if you wait, so backing off is exactly right. A
+    // per-day quota does not clear until tomorrow, and backing off four times
+    // over it costs 15 seconds per model to learn what the first response
+    // already said. On a free tier the second kind is the common one, and the
+    // user watches the whole thing happen.
+    const retryable =
+      (res.status === 429 && !isDailyQuotaError(lastError)) || res.status >= 500;
     if (!retryable || attempt === maxRetries - 1) break;
 
     // 1s, 2s, 4s, 8s — enough to clear a per-minute window.

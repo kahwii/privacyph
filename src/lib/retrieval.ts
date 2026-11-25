@@ -71,20 +71,8 @@ export function retrievalMode(): string {
   return mode();
 }
 
-/** Keyword boost for citation-style queries ("what does Sec. 18 say"). */
-export function rerank(question: string, chunks: RetrievedChunk[]): RetrievedChunk[] {
-  const sectionRef = question.match(/sec(?:tion|\.)?\s*(\d+)/i)?.[1];
-  const codeRef = question.match(/\b(\d{2}-\d{2}|20\d{2}-\d{2}|10173)\b/)?.[1];
+export { rerank } from './rank';
 
-  return [...chunks].sort((a, b) => score(b) - score(a));
-
-  function score(c: RetrievedChunk): number {
-    let s = c.similarity;
-    if (sectionRef && c.section_label.includes(sectionRef)) s += 0.15;
-    if (codeRef && c.short_code.includes(codeRef)) s += 0.1;
-    return s;
-  }
-}
 
 export interface Supersession {
   short_code: string;
