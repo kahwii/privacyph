@@ -1,0 +1,944 @@
+# Scoring sheet — 2026-11-24T14-55-26-982Z.csv
+
+18 answers to score. Under each citation is the opening of
+the section it names, read from the PDF. Compare the two.
+
+  5 correct, grounded, right issuance cited, nothing invented
+  4 correct and grounded but incomplete, or cites a secondary issuance
+  3 half right, or so hedged it is useless
+  2 wrong in a way someone could act on
+  1 invented citation, invented deadline, or answered what it should have refused
+
+==============================================================================
+
+[2]  breach  (en)   confidence 0.628
+------------------------------------------------------------------------------
+Q: Our HR system was accessed by a former employee whose account was never
+disabled. What do we do now?
+
+expected : NPC-16-03
+retrieved: NPC-16-03 NPC-2023-06 NPC-2022-04 RA-10173
+
+ANSWER:
+  When a vulnerability in your data processing system allows unauthorized
+  access to personal data, the personal information controller or personal
+  information processor must conduct an assessment to determine if a
+  personal data breach has occurred [NPC-16-03, RULE V, SECTION 14].
+  Additionally, personal information controllers must promptly notify the
+  National Privacy Commission and affected data subjects if sensitive
+  personal information or information that may enable identity fraud is
+  reasonably believed to have been acquired by an unauthorized person,
+  provided there is a real risk of serious harm [RA-10173, CHAPTER V, SEC.
+  20]. This is general information, not legal advice. Please confirm any
+  consequential steps with your Data Protection Officer or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-16-03, RULE V, SECTION 14]
+    RULE V, SECTION 14 — Discovery of Vulnerability
+    Discovery of Vulnerability. A discovery of a vulnerability in the
+    data processing system that would allow access to personal data
+    shall prompt the personal information controller or the personal
+    information processor, as the case may be, to conduct an assessment
+    and determine if a personal data breach has occurred.
+
+  [RA-10173, CHAPTER V, SEC. 20]
+    CHAPTER V, SEC. 20 — Security of Personal Information
+    Security of Personal Information. – (a) The personal information
+    controller must implement reasonable and appropriate organizational,
+    physical and technical measures intended for the protection of
+    personal information against any accidental or unlawful destruction,
+    alteration and disclosure, as well as against any other unlawful
+    processing. (b) The personal information controller shall implement
+    reasonable and approp…
+
+SCORE: ___
+
+
+[3]  breach  (en)   confidence 0.682
+------------------------------------------------------------------------------
+Q: We discovered a breach this morning affecting 300 customers. What are
+our obligations and by when?
+
+expected : NPC-16-03  +  IRR-10173
+retrieved: IRR-10173 NPC-16-03 NPC-ADV-2026-02
+
+ANSWER:
+  - When a personal data breach occurs, the personal information
+  controller must notify both the National Privacy Commission and the
+  affected data subjects within seventy-two (72) hours upon knowledge or
+  reasonable belief of the breach [IRR-10173, RULE IX, Section 38]. - This
+  obligation applies because the breach involves at least one hundred
+  (100) data subjects, and there is no delay allowed in the notification
+  when the breach involves at least one hundred (100) data subjects or
+  when the disclosure of sensitive personal information will harm or
+  adversely affect the data subject [NPC-16-03, RULE V, SECTION 17]. - The
+  initial notification to the Commission and the data subjects may be
+  based on available information within the 72-hour period [NPC-16-03,
+  RULE V, SECTION 17; NPC-16-03, RULE V, SECTION 18]. - A full report of
+  the personal data breach must be submitted to the Commission within five
+  (5) days, unless the personal information controller is granted
+  additional time by the Commission to comply [NPC-16-03, RULE V, SECTION
+  17]. - The notification to the Commission must include the nature of the
+  breach, personal data possibly involved, and the measures taken to
+  address the breach, among other required details [NPC-16-03, RULE V,
+  SECTION 17]. - The notification to the affected data subjects must
+  include the nature of the breach, personal data possibly involved,
+  measures taken to address the breach and reduce harm, contact details of
+  the representative for additional information, and any assistance to be
+  provided [NPC-16-03, RULE V, SECTION 18]. - The personal information
+  controller must ensure it receives confirmation of receipt from the
+  Commission for the notification to be deemed filed [NPC-16-03, RULE V,
+  SECTION 17]. - For anything consequential regarding your specific case,
+  please confirm with your DPO or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [IRR-10173, RULE IX, Section 38]
+    RULE IX, Section 38 — Data Breach Notification
+    Data Breach Notification a. The Commission and affected data
+    subjects shall be notified by the personal information controller
+    within seventy-two (72) hours upon knowledge of, or when there is
+    reasonable belief by the personal information controller or personal
+    information processor that, a personal data breach requiring
+    notification has occurred. b. Notification of personal data breach
+    shall be required when sensiti…
+
+  [NPC-16-03, RULE V, SECTION 17]
+    RULE V, SECTION 17 — Notification of the Commission
+    Notification of the Commission. The personal information controller
+    shall notify the Commission of a personal data breach subject to the
+    following procedures: A. When Notification Should be Done. The
+    Commission shall be notified within seventy-two (72) hours upon
+    knowledge of or the reasonable belief by the personal information
+    controller or personal information processor that a personal data
+    breach has occurred. B.…
+
+  [NPC-16-03, RULE V, SECTION 17; NPC-16-03, RULE V, SECTION 18]
+    RULE V, SECTION 17 — Notification of the Commission
+    Notification of the Commission. The personal information controller
+    shall notify the Commission of a personal data breach subject to the
+    following procedures: A. When Notification Should be Done. The
+    Commission shall be notified within seventy-two (72) hours upon
+    knowledge of or the reasonable belief by the personal information
+    controller or personal information processor that a personal data
+    breach has occurred. B.…
+
+  [NPC-16-03, RULE V, SECTION 18]
+    RULE V, SECTION 18 — Notification of Data Subjects
+    Notification of Data Subjects. The personal information controller
+    shall notify the data subjects affected by a personal data breach,
+    subject to the following procedures: A. When should notification be
+    done. The data subjects shall be notified within seventy-two (72)
+    hours upon knowledge of or reasonable belief by the personal
+    information controller or personal information processor that a
+    personal data breach has oc…
+
+SCORE: ___
+
+
+[4]  breach  (en)   confidence 0.697
+------------------------------------------------------------------------------
+Q: Our payment processor was breached, not us. Are we the one who has to
+report it?
+
+expected : NPC-16-03
+retrieved: NPC-16-03 IRR-10173
+
+ANSWER:
+  - As a personal information controller, you shall use contractual or
+  other reasonable means to ensure that you are provided a report by the
+  personal information processor upon their knowledge of, or reasonable
+  belief that a personal data breach has occurred [NPC-16-03, SECTION 16].
+  - The personal information controller controls the processing of
+  information, even if processing is outsourced or subcontracted to a
+  third party [NPC-16-03, Summary]. - Confirm the exact applicability of
+  these processor reporting obligations to your situation with your Data
+  Protection Officer or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-16-03, SECTION 16]
+    RULE V, SECTION 16 — Reporting by Personal Information Processors
+    Reporting by Personal Information Processors. To facilitate the
+    timely reporting of a personal data breach, the personal information
+    controller shall use contractual or other reasonable means to ensure
+    that it is provided a report by the personal information processor
+    upon the knowledge of, or reasonable belief that a personal data
+    breach has occurred.
+
+  [NPC-16-03, Summary]
+    !! could not locate this section in the PDF — check by hand
+
+SCORE: ___
+
+
+[8]  consent  (en)   confidence 0.719
+------------------------------------------------------------------------------
+Q: Is consent we collected five years ago still good?
+
+expected : NPC-2023-04
+retrieved: NPC-2023-04 IRR-10173
+
+ANSWER:
+  Generally, consent remains valid as long as the information communicated
+  in relation to the scope, purpose, nature, and extent of the processing
+  remains and still holds true [NPC-2023-04, SECTION 21]. However, consent
+  is no longer valid under the following conditions: - If the scope,
+  purpose, nature, and extent of the processing involved changes or
+  evolves considerably, in which case a Personal Information Controller
+  (PIC) must obtain new consent [NPC-2023-04, SECTION 21(A)]. - If the
+  consent was clearly only intended to cover a certain period of time or a
+  particular context, it will not be equivalent to an ongoing consent for
+  all future processing [NPC-2023-04, SECTION 21(B)]. - If the data
+  subject enters into a contract and subsequently cancels, terminates, or
+  unsubscribes from it, the consent given to process personal data for
+  that purpose is also terminated, unless there is another lawful basis
+  for processing under Sections 12 and 13 of the Data Privacy Act, except
+  for direct marketing [NPC-2023-04, SECTION 21(E)]. PICs must also
+  determine whether it remains reasonable to treat the consent as an
+  ongoing indication of the data subject's current choices based on the
+  original context and relationship [NPC-2023-04, SECTION 21(B)].
+  Furthermore, obtaining consent is not a one-time compliance, and PICs
+  must offer mechanisms for data subjects to exercise ongoing preference
+  and control [NPC-2023-04, SECTION 21(D)]. This information is for
+  general guidance. For anything consequential to your business, please
+  confirm with your Data Protection Officer (DPO) or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-2023-04, SECTION 21]
+    SECTION 21 — Period for validity of consent
+    Period for validity of consent. — Generally, consent remains valid
+    as long as the information communicated in relation to the scope,
+    purpose, nature, and extent of the processing remains and still
+    holds true. A. If the scope, purpose, nature, and extent of the
+    processing involved changes or evolves considerably, then the
+    original consent given is no longer valid. A PIC shall obtain new
+    consent in accordance with the…
+
+SCORE: ___
+
+
+[9]  rights  (en)   confidence 0.654
+------------------------------------------------------------------------------
+Q: A customer asked us to delete everything we hold on them. Do we have
+to?
+
+expected : RA-10173  +  IRR-10173
+retrieved: NPC-2023-06 NPC-2023-04 NPC-ADV-2017-01
+
+ANSWER:
+  - A data subject can withdraw consent at any time and without cost,
+  subject to certain limitations provided by law, regulation, or contract
+  [NPC-2023-04, Section 13]. - When a data subject exercises the right to
+  withdraw consent and there is no other lawful basis justifying continued
+  processing, a personal information controller is obliged to stop
+  processing without undue delay, terminate processing activities and
+  services relying on that consent, and delete the personal data
+  [NPC-2023-04, Section 13]. - A personal information controller must
+  implement simple procedures to enable the data subject to exercise the
+  right to erasure, including to suspend, withdraw, or order the blocking,
+  removal, or destruction of personal data [NPC-2023-04, Section 13, A]. -
+  If a customer cancels, terminates, or unsubscribes from a contract, the
+  consent given to process personal data for that purpose is also
+  terminated, and processing must stop unless another lawful basis applies
+  under Section 12 or 13 of the Data Privacy Act, except for direct
+  marketing [NPC-2023-04, Section 21, E]. Please confirm with your DPO or
+  legal counsel for anything consequential.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-2023-04, Section 13]
+    SECTION 13 — General Considerations
+    General Considerations. — Consent can be withdrawn at any time and
+    without cost to the data subject, subject to certain limitations as
+    may be provided for by law, regulation, or contract. Should a data
+    subject choose to exercise the right to withdraw consent to the
+    processing and if there is no other lawful basis justifying the
+    continued processing, a PIC is obliged to stop the processing
+    without undue delay, termina…
+
+  [NPC-2023-04, Section 13, A]
+    SECTION 13 — General Considerations
+    General Considerations. — Consent can be withdrawn at any time and
+    without cost to the data subject, subject to certain limitations as
+    may be provided for by law, regulation, or contract. Should a data
+    subject choose to exercise the right to withdraw consent to the
+    processing and if there is no other lawful basis justifying the
+    continued processing, a PIC is obliged to stop the processing
+    without undue delay, termina…
+
+  [NPC-2023-04, Section 21, E]
+    SECTION 21 — Period for validity of consent
+    Period for validity of consent. — Generally, consent remains valid
+    as long as the information communicated in relation to the scope,
+    purpose, nature, and extent of the processing remains and still
+    holds true. A. If the scope, purpose, nature, and extent of the
+    processing involved changes or evolves considerably, then the
+    original consent given is no longer valid. A PIC shall obtain new
+    consent in accordance with the…
+
+SCORE: ___
+
+
+[12]  governance  (en)   confidence 0.645
+------------------------------------------------------------------------------
+Q: Do we have to tell the NPC anything about the systems we run?
+
+expected : NPC-2022-04
+retrieved: NPC-2022-04 NPC-2023-06 NPC-ADV-SCRAPING NPC-ADV-AI-2024 NPC-2024-02
+
+ANSWER:
+  A Personal Information Controller (PIC) or Personal Information
+  Processor (PIP) is required to register its data processing systems with
+  the National Privacy Commission (NPC) [NPC-2023-06, RULE I, SECTION 4].
+  Registration is required if the PIC or PIP employs at least two hundred
+  fifty (250) persons, or if the processing it carries out is likely to
+  pose a risk to the rights and freedoms of data subjects, is not
+  occasional, or includes sensitive personal information of at least one
+  thousand (1,000) individuals [NPC-2022-04, Preamble (1)]. Additionally,
+  a PIC must notify the NPC regarding any automated decision-making
+  operation or profiling when the operation becomes the sole basis for
+  making decisions about a data subject and such decision would
+  significantly affect the data subject [NPC-2022-04, Preamble (1)]. For
+  specific guidance on whether your organization meets these thresholds or
+  how to proceed with registration, you should consult with your Data
+  Protection Officer (DPO) or legal counsel. You may also visit the
+  National Privacy Commission at privacy.gov.ph.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-2023-06, RULE I, SECTION 4]
+    RULE I, SECTION 4 — General Obligations
+    General Obligations. – A PIC and its PIP shall fulfill the following
+    responsibilities: A. Designate and register its Data Protection
+    Officer (DPO) with the NPC, taking into account the provisions of
+    the DPA, its IRR, its amendments, and any other issuances of the NPC
+    on the designation and registration of a DPO; B. Register its data
+    processing systems with the NPC according to the provisions of the
+    DPA, its IRR, its…
+
+  [NPC-2022-04, Preamble (1)]
+    Preamble (2)
+    WHEREAS, Sections 46 and 47, Rule XI of the IRR also require the
+    effective and efficient monitoring of a Data Processing Systems that
+    are likely to pose a risk to the rights and freedoms of data
+    subjects including those that involve information likely to affect
+    national security, public safety, public order, or public health or
+    information required by applicable laws or rules to be confidential;
+    vulnerable data subje…
+
+SCORE: ___
+
+
+[14]  security  (en)   confidence 0.676
+------------------------------------------------------------------------------
+Q: What security measures are we actually required to have in place?
+
+expected : NPC-2023-06
+retrieved: IRR-10173 NPC-16-03 RA-10173
+
+ANSWER:
+  Personal information controllers and personal information processors
+  must implement reasonable and appropriate organizational, physical, and
+  technical security measures to protect personal data [IRR-10173, RULE
+  VI, Section 25]. The appropriate level of security is determined by
+  taking into account the nature of the personal data or information to be
+  protected, the risks posed by the processing, the size of the
+  organization and complexity of its operations, current data privacy best
+  practices, and the cost of security implementation [IRR-10173, RULE VI,
+  Section 29; RA-10173, CHAPTER V, SEC. 20]. ORGANIZATIONAL SECURITY
+  MEASURES Where appropriate, these include: - Designating individuals to
+  function as a data protection officer, compliance officer, or someone
+  otherwise accountable for ensuring compliance with data privacy and
+  security laws [IRR-10173, RULE VI, Section 26 (1)]. - Implementing
+  appropriate data protection policies that provide for organizational,
+  physical, and technical security measures, incorporate privacy by design
+  and default, and provide for regular review and updating [IRR-10173,
+  RULE VI, Section 26 (1)]. - Maintaining records of processing activities
+  that describe the data processing system, data flows, purposes,
+  categories of data subjects, and security measures [IRR-10173, RULE VI,
+  Section 26 (1)]. - Managing human resources by selecting and supervising
+  employees with access to personal data, ensuring they maintain strict
+  confidentiality even after leaving the organization, and providing
+  capacity building, orientation, or training programs [IRR-10173, RULE
+  VI, Section 26 (1)]. TECHNICAL SECURITY MEASURES Where appropriate,
+  these include: - A security policy with respect to the processing of
+  personal data [IRR-10173, RULE VI, Section 28]. - Safeguards to protect
+  computer networks against accidental, unlawful, or unauthorized usage,
+  interference, and electronic network unauthorized access [IRR-10173,
+  RULE VI, Section 28]. - The ability to ensure and maintain the
+  confidentiality, integrity, availability, and resilience of processing
+  systems and services [IRR-10173, RULE VI, Section 28]. - Regular
+  monitoring for security breaches, vulnerability assessments of computer
+  networks, and preventive, corrective, and mitigating actions against
+  security incidents [IRR-10173, RULE VI, Section 28; RA-10173, CHAPTER V,
+  SEC. 20]. - The ability to restore the availability and access to
+  personal data in a timely manner after a physical or technical incident
+  [IRR-10173, RULE VI, Section 28]. - A process for regularly testing,
+  assessing, and evaluating the effectiveness of security measures
+  [IRR-10173, RULE VI, Section 28]. - Encryption of personal data during
+  storage and in transit, authentication processes, and other technical
+  measures that control and limit access [IRR-10173, RULE VI, Section 28].
+  - Ensuring third parties processing personal information on your behalf
+  implement required security measures [RA-10173, CHAPTER V, SEC. 20].
+  SECURITY INCIDENT MANAGEMENT POLICY Controllers and processors must also
+  implement policies and procedures for managing security incidents and
+  personal data breaches, which must ensure: - Creation of a data breach
+  response team with clearly defined responsibilities [NPC-16-03, RULE II,
+  SECTION 4]. - Implementation of organizational, physical, and technical
+  measures to prevent or minimize breaches and assure timely discovery
+  [NPC-16-03, RULE II, SECTION 4]. - Incident response procedures to
+  contain incidents and restore system integrity [NPC-16-03, RULE II,
+  SECTION 4]. - Mitigation of possible harm and negative consequences to
+  data subjects [NPC-16-03, RULE II, SECTION 4]. - Compliance with breach
+  notification rules [NPC-16-03, RULE II, SECTION 4]. Please confirm with
+  your DPO or legal counsel for anything consequential regarding your
+  organization's specific requirements.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [IRR-10173, RULE VI, Section 25]
+    RULE VI, Section 25 — Data Privacy and Security
+    Data Privacy and Security. Personal information controllers and
+    personal information processors shall implement reasonable and
+    appropriate organizational, physical, and technical security
+    measures for the protection of personal data. The personal
+    information controller and personal information processor shall take
+    steps to ensure that any natural person acting under their authority
+    and who has access to personal data…
+
+  [IRR-10173, RULE VI, Section 29; RA-10173, CHAPTER V, SEC. 20]
+    RULE VI, Section 29 — Appropriate Level of Security
+    Appropriate Level of Security. The Commission shall monitor the
+    compliance of natural or juridical person or other body involved in
+    the processing of personal data, specifically their security
+    measures, with the guidelines provided in these Rules and subsequent
+    issuances of the Commission. In determining the level of security
+    appropriate for a particular personal information controller or
+    personal information process…
+
+  [IRR-10173, RULE VI, Section 26 (1)]
+    RULE VI, Section 26 (2) — Organizational Security Measures
+    e. Processing of Personal Data. Any natural or juridical person or
+    other body involved in the processing of personal data shall
+    develop, implement and review: 1. A procedure for the collection of
+    personal data, including procedures for obtaining consent, when
+    applicable; 2. Procedures that limit the processing of data, to
+    ensure that it is only to the extent necessary for the declared,
+    specified, and legitimate purpo…
+
+  [IRR-10173, RULE VI, Section 28]
+    RULE VI, Section 28 — Guidelines for Technical Security Measures
+    Guidelines for Technical Security Measures. Where appropriate,
+    personal information controllers and personal information processors
+    shall adopt and establish the following technical security measures:
+    a. A security policy with respect to the processing of personal
+    data; b. Safeguards to protect their computer network against
+    accidental, unlawful or unauthorized usage, any interference which
+    will affect data integrity…
+
+  [IRR-10173, RULE VI, Section 28; RA-10173, CHAPTER V, SEC. 20]
+    RULE VI, Section 28 — Guidelines for Technical Security Measures
+    Guidelines for Technical Security Measures. Where appropriate,
+    personal information controllers and personal information processors
+    shall adopt and establish the following technical security measures:
+    a. A security policy with respect to the processing of personal
+    data; b. Safeguards to protect their computer network against
+    accidental, unlawful or unauthorized usage, any interference which
+    will affect data integrity…
+
+  [RA-10173, CHAPTER V, SEC. 20]
+    CHAPTER V, SEC. 20 — Security of Personal Information
+    Security of Personal Information. – (a) The personal information
+    controller must implement reasonable and appropriate organizational,
+    physical and technical measures intended for the protection of
+    personal information against any accidental or unlawful destruction,
+    alteration and disclosure, as well as against any other unlawful
+    processing. (b) The personal information controller shall implement
+    reasonable and approp…
+
+  [NPC-16-03, RULE II, SECTION 4]
+    RULE II, SECTION 4 — Security Incident Management Policy
+    Security Incident Management Policy. A personal information
+    controller or personal information processor shall implement
+    policies and procedures for the purpose of managing security
+    incidents, including personal data breach. These policies and
+    procedures must ensure: A. Creation of a data breach response team,
+    with members that have clearly defined responsibilities, to ensure
+    timely action in the event of a security…
+
+SCORE: ___
+
+
+[15]  cctv  (en)   confidence 0.656
+------------------------------------------------------------------------------
+Q: We want to put cameras in the stockroom where our staff work. Is there
+anything we should know?
+
+expected : NPC-2024-02
+retrieved: NPC-2024-02 IRR-10173 NPC-2023-06
+
+ANSWER:
+  - Location and placement: You must carefully consider the location and
+  angles of the cameras to ensure they capture footage in a manner
+  consistent with the Data Privacy Act and avoid unreasonable intrusions
+  on privacy [NPC-2024-02, Sec. 5(1)]. CCTVs must only be used to monitor
+  intended spaces, and using them in areas with a heightened expectation
+  of privacy is strictly prohibited [NPC-2024-02, Sec. 5(1)]. - Policies:
+  Personal Information Controllers (PICs) and Personal Information
+  Processors (PIPs) must establish policies governing the operation of
+  CCTV systems, which include legitimate purposes, lawful bases, privacy
+  impact assessments, CCTV notices, operational details, designated
+  authorized personnel, and handling procedures for access requests,
+  complaints, breaches, retention, security measures, and policy reviews
+  [NPC-2024-02, Sec. 5(1)]. - Safeguards: Stored footage must be
+  encrypted, access to storage areas must be restricted to authorized
+  personnel, access logs must be regularly updated, and live feed
+  monitoring must be limited to identified authorized personnel
+  [NPC-2024-02, Sec. 5(2)]. - Retention: Footage must be retained only as
+  long as necessary to fulfill its purpose, documented in the CCTV policy,
+  and destroyed when no longer needed [NPC-2024-02, Sec. 5(2)]. Please
+  confirm with your Data Protection Officer or legal counsel for anything
+  consequential.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-2024-02, Sec. 5(1)]
+    SECTION 5 (2) — Safeguards
+    3. Storage. Footage recorded by CCTV systems shall be stored in a
+    secure manner, whereby its confidentiality, integrity, and
+    availability are ensured. The recorded footage shall be encrypted
+    pursuant to the applicable issuances of the NPC. a. Without
+    prejudice to the exercise of the right to access of data subjects
+    and third-party access requests, access to the area where the CCTV
+    footage is stored shall be restricte…
+
+SCORE: ___
+
+
+[16]  cctv  (en)   confidence 0.687
+------------------------------------------------------------------------------
+Q: Police have asked us for CCTV footage of an incident. What governs
+that?
+
+expected : NPC-2024-02
+retrieved: NPC-2024-02
+
+ANSWER:
+  When law enforcement requests CCTV footage for a criminal investigation,
+  Personal Information Controllers (PICs) and Personal Information
+  Processors (PIPs) shall cooperate on the appropriate disclosure to
+  authorized law enforcement agencies in connection with their
+  constitutional or statutory functions [NPC-2024-02, SECTION 7 (1)]. The
+  following conditions apply: - Law enforcement officers must provide a
+  written statement, affirmative declaration, or equivalent to establish
+  the lawfulness of the request [NPC-2024-02, SECTION 7 (1)]. - The
+  request must follow and strictly adhere to existing standard operating
+  procedures in the conduct of an investigation and law enforcement
+  operation as stated in the applicable rules and regulations of law
+  enforcement agencies and other pertinent public authorities
+  [NPC-2024-02, SECTION 7 (1)]. - Once disclosed, the requesting party
+  becomes responsible for the copy they hold and must comply with the Data
+  Privacy Act, its IRR, and related NPC issuances [NPC-2024-02, SECTION 7
+  (1)]. - The method of disclosure must be secure to ensure access only by
+  the intended recipient [NPC-2024-02, SECTION 7 (1)]. This information is
+  for general guidance. Please confirm any specific actions with your Data
+  Protection Officer (DPO) or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-2024-02, SECTION 7 (1)]
+    SECTION 7 (2) — Third-party access request
+    the media to prove that the requested CCTV footage shall not be used
+    for amusement or entertainment purposes. b. Law enforcement agencies
+    may release CCTV footage to the media on a case- to-case basis
+    taking into account the lawful basis for processing of personal data
+    under Sections 12 and 13 of the DPA, or processing under a special
+    case, considering the requirements of public order and safety,
+    verification or conf…
+
+SCORE: ___
+
+
+[17]  cctv  (en)   confidence 0.677
+------------------------------------------------------------------------------
+Q: A breach exposed CCTV footage of our customers. What are our duties?
+
+expected : NPC-16-03  +  NPC-2024-02
+retrieved: NPC-2024-02 NPC-16-03
+
+ANSWER:
+  - Implement policies and procedures for the guidance of the data breach
+  response team and other personnel, including procedures for timely
+  discovery, reporting lines, preliminary assessments, evaluation,
+  contacting law enforcement when criminal acts are involved,
+  investigations, notifying the Commission and data subjects, and
+  mitigating harm [NPC-16-03, RULE IV, SECTION 8]. - Notify affected data
+  subjects within seventy-two (72) hours upon knowledge or reasonable
+  belief that a personal data breach has occurred, if the breach is likely
+  to give rise to a real risk to their rights and freedoms [NPC-16-03,
+  RULE V, SECTION 18 (A)]. - Include in the notification the nature of the
+  breach, the personal data possibly involved, measures taken to address
+  it and reduce harm, representative contact details, and any assistance
+  to be provided [NPC-16-03, RULE V, SECTION 18 (C)]. - Notify data
+  subjects individually using secure written or electronic communication,
+  unless individual notification is not possible or requires
+  disproportionate effort, in which case you may seek approval from the
+  Commission to use alternative means such as public communication
+  [NPC-16-03, RULE V, SECTION 18 (D)]. Confirm any specific actions with
+  your DPO or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-16-03, RULE IV, SECTION 8]
+    RULE IV, SECTION 8 — Policies and Procedures
+    Policies and Procedures. The personal information controller or
+    personal information processor shall implement policies and
+    procedures for guidance of its data breach response team and other
+    personnel in the event of a security incident. These may include: A.
+    A procedure for the timely discovery of security incidents,
+    including the identification of person or persons responsible for
+    regular monitoring and evaluation…
+
+  [NPC-16-03, RULE V, SECTION 18 (A)]
+    RULE V, SECTION 18 — Notification of Data Subjects
+    Notification of Data Subjects. The personal information controller
+    shall notify the data subjects affected by a personal data breach,
+    subject to the following procedures: A. When should notification be
+    done. The data subjects shall be notified within seventy-two (72)
+    hours upon knowledge of or reasonable belief by the personal
+    information controller or personal information processor that a
+    personal data breach has oc…
+
+SCORE: ___
+
+
+[20]  crossborder  (en)   confidence 0.689
+------------------------------------------------------------------------------
+Q: We share customer data with a partner company abroad. What agreement
+and what safeguards do we need?
+
+expected : NPC-2020-03  +  NPC-ADV-2024-01
+retrieved: NPC-2020-03 NPC-2023-04 IRR-10173
+
+ANSWER:
+  - Data sharing arrangements must be covered by a data sharing agreement
+  (DSA) or a similar document containing the terms and conditions of the
+  sharing arrangement, responsibilities of the parties, and obligations to
+  protect shared personal data [NPC-2020-03, Section 4], [NPC-2020-03,
+  Section 8]. - Only personal information controllers (PICs) can be
+  parties to a data sharing agreement [NPC-2020-03, Section 4]. - A DSA
+  must include a description of reasonable and appropriate organizational,
+  physical, and technical security measures adopted by the parties to
+  protect the shared data, as well as a process for data breach management
+  [NPC-2020-03, Section 9]. - Adequate safeguards to protect personal data
+  must be put in place in every data sharing arrangement [NPC-2020-03,
+  Section 11]. - Where online access to personal data is granted, parties
+  must ensure secure access through appropriate means such as a secure
+  encrypted link, middleware, or other appropriate software/program
+  [NPC-2020-03, Section 11]. - For anything consequential, please confirm
+  with your DPO or legal counsel.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-2020-03, Section 4]
+    SECTION 4 — Parties
+    Parties. — Only PICs can be parties to data sharing arrangements.
+    This is the case even where the actual sharing will transpire
+    between a PIC and a PIP acting on behalf of, or upon the
+    instructions of, another PIC.
+
+  [NPC-2020-03, Section 8]
+    SECTION 8 — Data sharing agreement; key considerations
+    Data sharing agreement; key considerations. — Data sharing may be
+    covered by a data sharing agreement (DSA) or a similar document
+    containing the terms and conditions of the sharing arrangement,
+    including obligations to protect the personal data shared, the
+    responsibilities of the parties, mechanisms through which data
+    subjects may exercise their rights, among others. The execution of a
+    DSA is a sound recourse and dem…
+
+  [NPC-2020-03, Section 9]
+    SECTION 9 — Contents of a Data Sharing Agreement
+    Contents of a Data Sharing Agreement. — The following constitute the
+    contents of a DSA: A. Purpose and lawful basis. It specifies the
+    purpose/s of the data sharing and the appropriate lawful basis. B.
+    Objectives. It identifies the objective/s that the data sharing is
+    meant to achieve. C. Parties. It identifies all PICs that are party
+    to the DSA and, for each party, specifies the following: 1. Type of
+    personal data it…
+
+  [NPC-2020-03, Section 11]
+    SECTION 11 — Security of shared personal data
+    Security of shared personal data. —Adequate safeguards to protect
+    personal data should be put in place in every data sharing
+    arrangement, subject to the conditions set forth under Section 9
+    above. Where online access to personal data is granted, the parties
+    should ensure that said access is secure through the use of any
+    appropriate program, software, or any other appropriate means, such
+    as the use of a secure encrypt…
+
+SCORE: ___
+
+
+[23]  emerging  (en)   confidence 0.643
+------------------------------------------------------------------------------
+Q: We are using an AI tool that reads customer emails to draft replies.
+Does privacy law touch that?
+
+expected : NPC-ADV-AI-2024
+retrieved: NPC-ADV-AI-2024 NPC-ADV-SCRAPING NPC-2023-06 IRR-10173 NPC-2023-04
+
+ANSWER:
+  Yes, the obligations under the Data Privacy Act (DPA), its Implementing
+  Rules and Regulations (IRR), and National Privacy Commission issuances
+  apply when AI systems involve the processing of personal data
+  [NPC-ADV-AI-2024, SECTION 2 (1)]. Conditions and requirements for
+  Personal Information Controllers (PICs) using AI systems include: - PICs
+  and their Personal Information Processors must adhere to general privacy
+  principles, uphold data subject rights, determine an appropriate lawful
+  basis, and implement security measures [NPC-ADV-AI-2024, SECTION 2 (1)].
+  - PICs must inform data subjects of the nature, purpose, and extent of
+  personal data processing involved in the development or deployment of AI
+  systems, including training and testing [NPC-ADV-AI-2024, SECTION 2 (1)
+  A]. - PICs are accountable for the processing, outcomes, and
+  consequences of AI systems, including when processing is outsourced to a
+  PIP [NPC-ADV-AI-2024, SECTION 2 (1) B]. - PICs must institute governance
+  mechanisms such as Privacy Impact Assessments (PIA), privacy-by-design
+  and privacy-by-default, security standards, and mechanisms for human
+  intervention in automated decision-making [NPC-ADV-AI-2024, SECTION 2
+  (1) B(2)]. This information is general and for reference purposes. For
+  guidance on your specific case, please consult your Data Protection
+  Officer or legal counsel, or visit the National Privacy Commission
+  website at privacy.gov.ph.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-ADV-AI-2024, SECTION 2 (1)]
+    SECTION 2 (2) — Application of the DPA
+    b. PICs shall also be responsible for regularly monitoring the
+    proper implementation and effectiveness of these governance
+    mechanisms. C. Fairness. PICs shall ensure that personal data is
+    processed in a manner that is neither manipulative nor unduly
+    oppressive to data subjects. As such, PICs shall implement
+    mechanisms to identify and monitor biases in the AI systems and to
+    limit such biases and their impact on the da…
+
+  [NPC-ADV-AI-2024, SECTION 2 (1) A]
+    SECTION 2 (2) — Application of the DPA
+    b. PICs shall also be responsible for regularly monitoring the
+    proper implementation and effectiveness of these governance
+    mechanisms. C. Fairness. PICs shall ensure that personal data is
+    processed in a manner that is neither manipulative nor unduly
+    oppressive to data subjects. As such, PICs shall implement
+    mechanisms to identify and monitor biases in the AI systems and to
+    limit such biases and their impact on the da…
+
+  [NPC-ADV-AI-2024, SECTION 2 (1) B]
+    SECTION 2 (2) — Application of the DPA
+    b. PICs shall also be responsible for regularly monitoring the
+    proper implementation and effectiveness of these governance
+    mechanisms. C. Fairness. PICs shall ensure that personal data is
+    processed in a manner that is neither manipulative nor unduly
+    oppressive to data subjects. As such, PICs shall implement
+    mechanisms to identify and monitor biases in the AI systems and to
+    limit such biases and their impact on the da…
+
+SCORE: ___
+
+
+[24]  design  (en)   confidence 0.669
+------------------------------------------------------------------------------
+Q: Our accept-all cookie button is much larger and brighter than the
+reject button. Is that a problem?
+
+expected : NPC-ADV-2023-01
+retrieved: NPC-ADV-2023-01 NPC-2023-04 NPC-2023-07 NPC-2023-06 NPC-ADV-2017-03
+
+ANSWER:
+  Yes, this can invalidate consent. Making it easy to consent while
+  accentuating a choice that results in processing more personal data
+  while blurring or obfuscating the option that enables data minimization
+  is classified as an appearance-based deceptive design pattern
+  [NPC-ADV-2023-01, SECTION 3]. - The use of deceptive design patterns
+  contravenes the principle of fairness, may invalidate the consent given
+  by a data subject, and renders the processing undertaken without a valid
+  lawful basis [NPC-ADV-2023-01, SECTION 7]. - A personal information
+  controller's use of appearance-based deceptive design patterns is also
+  inconsistent with the obligation to adopt a privacy by design approach
+  [NPC-ADV-2023-01, SECTION 8]. This is general information, not legal
+  advice. Please confirm with your DPO or legal counsel for anything
+  consequential.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [NPC-ADV-2023-01, SECTION 3]
+    SECTION 3 — Deceptive Design Patterns
+    Deceptive Design Patterns. – Deceptive design patterns undermine
+    general data privacy principles and the rights of data subjects. The
+    following is a non-exhaustive list of prevalent deceptive design
+    patterns: A. Appearance-Based Deceptive Design Patterns are those,
+    but are not limited to, that: 1. prohibit a data subject from
+    categorically disallowing the processing of their personal data, or
+    repeatedly prompt a data…
+
+  [NPC-ADV-2023-01, SECTION 7]
+    SECTION 7 — Effects on Consent
+    Effects on Consent. – The use of Deceptive Design Patterns
+    contravenes the principle of Fairness as provided in Section 5 of
+    this Advisory. As such, its use may result in invalidating the
+    consent given by a data subject for a specific processing activity
+    and renders the processing undertaken without valid lawful basis.
+
+  [NPC-ADV-2023-01, SECTION 8]
+    SECTION 8 — Privacy by Design
+    Privacy by Design. —A PIC’s use of Appearance-Based Deceptive Design
+    Patterns or Content-Based Deceptive Design Patterns is inconsistent
+    with its obligation to adopt a Privacy by Design approach in the
+    processing of personal data.
+
+SCORE: ___
+
+
+[25]  identity  (en)   confidence 0.639
+------------------------------------------------------------------------------
+Q: We ask customers to present an ID before entering. Can we keep a
+photocopy?
+
+expected : NPC-2023-03
+retrieved: NPC-2023-03 NPC-2023-07 NPC-2024-02 NPC-2023-04 RA-10173
+
+ANSWER:
+  The provided context does not explicitly state whether a business is
+  permitted to keep a photocopy of a customer's ID. For guidance on the
+  processing of personal data and compliance with the Data Privacy Act,
+  please refer to the National Privacy Commission at privacy.gov.ph.
+
+SCORE: ___
+
+
+[26]  scope  (en)   confidence 0.679
+------------------------------------------------------------------------------
+Q: Does the law still apply to us if our customers are all overseas?
+
+expected : RA-10173
+retrieved: RA-10173 NPC-16-03 NPC-2024-02 NPC-20-01 IRR-10173
+
+ANSWER:
+  Yes, the Data Privacy Act can still apply to entities processing
+  personal information outside of the Philippines, depending on specific
+  conditions linking the processing or the entity to the Philippines
+  [RA-10173, CHAPTER I, SEC. 6]. Specifically, the law applies to acts
+  done or practices engaged in outside the Philippines if: - The
+  processing relates to personal information about a Philippine citizen or
+  a resident [RA-10173, CHAPTER I, SEC. 6(a)]. - The entity has a link
+  with the Philippines and is processing personal information (whether
+  inside or outside the Philippines) about Philippine citizens or
+  residents, such as when a contract is entered into in the Philippines, a
+  juridical entity is unincorporated in the Philippines but has central
+  management and control in the country, or the entity has a branch,
+  agency, office, or subsidiary in the Philippines where the parent or
+  affiliate has access to personal information [RA-10173, CHAPTER I, SEC.
+  6(b)]. - The entity has other links, such as carrying on business in the
+  Philippines or holding personal information that was collected by an
+  entity in the Philippines [RA-10173, CHAPTER I, SEC. 6(c)].
+  Additionally, personal data breach management rules apply to any natural
+  or juridical person in the government or private sector processing
+  personal data outside of the Philippines, subject to the Act and its
+  Implementing Rules and Regulations [NPC-16-03, RULE I, SECTION 1].
+  Please consult your Data Protection Officer or legal counsel to confirm
+  how these extraterritorial provisions apply to your specific operations.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [RA-10173, CHAPTER I, SEC. 6]
+    CHAPTER I, SEC. 6 — Extraterritorial Application
+    Extraterritorial Application. – This Act applies to an act done or
+    practice engaged in and outside of the Philippines by an entity if:
+    (a) The act, practice or processing relates to personal information
+    about a Philippine citizen or a resident; (b) The entity has a link
+    with the Philippines, and the entity is processing personal
+    information in the Philippines or even if the processing is outside
+    the Philippines as lo…
+
+  [NPC-16-03, RULE I, SECTION 1]
+    RULE I, SECTION 1 — Scope
+    Scope. These Rules apply to any natural and juridical person in the
+    government or private sector processing personal data in outside of
+    the Philippines, subject to the relevant provisions of the Act and
+    its Implementing Rules and Regulations.
+
+SCORE: ___
+
+
+[27]  supersession  (en)   confidence 0.750
+------------------------------------------------------------------------------
+Q: Is the 2020 NPC advisory on CCTV still in force?
+
+expected : NPC-2024-02
+retrieved: NPC-2024-02 NPC-ADV-2024-01
+
+ANSWER:
+  The 2020 NPC advisory on CCTV was replaced by NPC Circular No. 2024-02.
+  For anything consequential, you should confirm this with your DPO or
+  legal counsel.
+
+SCORE: ___
+
+
+[29]  breach  (tl)   confidence 0.734
+------------------------------------------------------------------------------
+Q: Ilang oras ang deadline para sabihan ang mga customer na naapektuhan ng
+data breach?
+
+expected : NPC-16-03  +  IRR-10173
+retrieved: IRR-10173 NPC-16-03 NPC-ADV-2026-02
+
+ANSWER:
+  - The affected data subjects must be notified within seventy-two (72)
+  hours upon knowledge of, or reasonable belief by, the personal
+  information controller or personal information processor that a personal
+  data breach has occurred [IRR-10173, RULE IX, Section 38] [NPC-16-03,
+  RULE V, SECTION 18]. - This is general information and not legal advice;
+  confirm with your DPO or legal counsel for anything consequential, and
+  refer to the National Privacy Commission at privacy.gov.ph.
+
+  CITED TEXT --------------------------------------------------------------
+
+  [IRR-10173, RULE IX, Section 38]
+    RULE IX, Section 38 — Data Breach Notification
+    Data Breach Notification a. The Commission and affected data
+    subjects shall be notified by the personal information controller
+    within seventy-two (72) hours upon knowledge of, or when there is
+    reasonable belief by the personal information controller or personal
+    information processor that, a personal data breach requiring
+    notification has occurred. b. Notification of personal data breach
+    shall be required when sensiti…
+
+  [NPC-16-03, RULE V, SECTION 18]
+    RULE V, SECTION 18 — Notification of Data Subjects
+    Notification of Data Subjects. The personal information controller
+    shall notify the data subjects affected by a personal data breach,
+    subject to the following procedures: A. When should notification be
+    done. The data subjects shall be notified within seventy-two (72)
+    hours upon knowledge of or reasonable belief by the personal
+    information controller or personal information processor that a
+    personal data breach has oc…
+
+SCORE: ___
+
+
+[34]  refusal-control  (en)   confidence 0.613
+------------------------------------------------------------------------------
+Q: What is the maximum GDPR fine for a company in Germany?
+
+expected : NONE
+retrieved: IRR-10173 NPC-2022-01 NPC-2022-04
+
+ANSWER:
+  I do not have the answer to your question. Please consult the National
+  Privacy Commission at privacy.gov.ph.
+
+SCORE: ___
